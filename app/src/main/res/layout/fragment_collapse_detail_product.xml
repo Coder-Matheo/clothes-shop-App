@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_700">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_collapseMode="pin" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="450dp"
+                android:background="@color/purple_200">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:background="@color/purple_700"
+                    android:src="@drawable/businessman" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_above="@+id/textviewCollapse"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="150dp"
+                        android:layout_marginTop="240dp"
+                        android:layout_marginEnd="150dp"
+                        android:layout_marginBottom="1dp"
+                        android:src="@drawable/businessman" />
+
+                    <TextView
+                        android:id="@+id/textviewCollapse"
+                        android:layout_width="141dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_above="@+id/toolbarCollapse"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="150dp"
+                        android:layout_marginEnd="120dp"
+                        android:layout_marginBottom="0dp"
+                        android:text="Android Text"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbarCollapse"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="0dp"
+
+                        android:background="@color/teal_200"
+                        android:gravity="bottom"
+                        app:layout_collapseMode="pin"
+                        app:menu="@menu/collapse_menu"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold"
+                    android:textSize="23dp"
+                    android:text="@string/content"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/businessman"/>
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
