@@ -24,57 +24,47 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="450dp"
-                android:background="@color/purple_200">
+                android:layout_height="450dp">
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="400dp"
                     android:background="@color/purple_700"
                     android:src="@drawable/businessman" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_above="@+id/textviewCollapse"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="150dp"
-                        android:layout_marginTop="240dp"
-                        android:layout_marginEnd="150dp"
-                        android:layout_marginBottom="1dp"
-                        android:src="@drawable/businessman" />
-
-                    <TextView
-                        android:id="@+id/textviewCollapse"
-                        android:layout_width="141dp"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                        android:layout_above="@+id/toolbarCollapse"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="150dp"
-                        android:layout_marginEnd="120dp"
-                        android:layout_marginBottom="0dp"
-                        android:text="Android Text"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="42dp"
+                            android:background="@drawable/background_login_button"
+                            android:src="@drawable/businessman" />
+
+
+
+
+                    </LinearLayout>
+
 
                     <androidx.appcompat.widget.Toolbar
                         android:id="@+id/toolbarCollapse"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="0dp"
-
-                        android:background="@color/teal_200"
                         android:gravity="bottom"
                         app:layout_collapseMode="pin"
                         app:menu="@menu/collapse_menu"
@@ -99,18 +89,27 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                >
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textStyle="bold"
+                    android:text="@string/content"
                     android:textSize="23dp"
-                    android:text="@string/content"/>
-                <ImageView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/collapseHorizontalRecyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/businessman"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="bottom"
+                    />
+
+
             </LinearLayout>
 
         </ScrollView>

@@ -3,15 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/drawable-v24/background_create_account_button.xml" value="0.2855" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/drawable/background_collapse_image_view.xml" value="0.2855" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/drawable/background_collapse_item.xml" value="0.12" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/drawable/background_linearlayout.xml" value="0.2855" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/drawable/background_login_button.xml" value="0.2855" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/drawable/background_pass_edittext.xml" value="0.2855" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/drawable/custom_bottom_nav.xml" value="0.1" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/drawable/custom_tablayout.xml" value="0.156" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/drawable/ic_add.xml" value="0.143" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/drawable/ic_arrow_back.xml" value="0.2855" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/fragment_collapse_detail_product.xml" value="0.2" />
-        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/fragment_detail_product.xml" value="0.182518115942029" />
-        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/item_detail_product.xml" value="0.16" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/fragment_collapse_detail_product.xml" value="0.264" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/fragment_detail_product.xml" value="0.264" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/item_collapse_scroll_part.xml" value="0.17889492753623187" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/item_detail_product.xml" value="0.2" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/item_detail_product2.xml" value="0.264" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/item_detail_product3.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/item_main1.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/loggin_fragment.xml" value="0.264" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/register_fragment.xml" value="0.264" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/menu/collapse_menu.xml" value="0.1" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/menu/top_toolbar_menu.xml" value="0.1" />

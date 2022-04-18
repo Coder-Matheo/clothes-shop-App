@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/loggin_3d_pic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/background_linearlayout"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/background_pass_edittext"
+                android:hint="Email"
+                android:paddingLeft="20dp"
+                android:textAllCaps="false"
+                android:textColorHint="#444444"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/background_pass_edittext"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:paddingLeft="20dp"
+                android:textAllCaps="false"
+                android:textColorHint="#444444"
+                android:textSize="22sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forget Password"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textStyle="bold"
+                android:textColor="#3F51B5"
+                android:paddingRight="5dp"
+                android:paddingTop="15dp"
+                android:textAlignment="textEnd"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="60dp"
+            android:paddingTop="40dp"
+            android:paddingRight="60dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/background_login_button"
+                android:drawableRight="@drawable/ic_arrow_login"
+                android:paddingRight="10dp"
+                android:text="Login"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/background_create_account_button"
+                android:text="Create an Account"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

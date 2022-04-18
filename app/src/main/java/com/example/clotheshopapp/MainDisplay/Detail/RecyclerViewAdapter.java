@@ -44,7 +44,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        //holder.textView.setText(lstTitle.get(position));
+        //holder.description_item_textView.setText(lstTitle.get(position));
     }
 
     @Override
@@ -65,11 +65,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public  class MyViewHolder extends RecyclerView.ViewHolder{
 
         LinearLayout layout;
+        TextView description_item_textView;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             layout = itemView.findViewById(R.id.linearLayoutId);
+            description_item_textView = itemView.findViewById(R.id.description_item_textView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
