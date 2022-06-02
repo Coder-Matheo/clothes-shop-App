@@ -1,6 +1,7 @@
 package com.example.clotheshopapp.MainDisplay;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ public class RecyclerHorizontalAdapter extends RecyclerView.Adapter<RecyclerHori
     public RecyclerHorizontalAdapter(Context context, List<String> titleText) {
         this.context = context;
         this.titleText = titleText;
+
     }
 
     @NonNull

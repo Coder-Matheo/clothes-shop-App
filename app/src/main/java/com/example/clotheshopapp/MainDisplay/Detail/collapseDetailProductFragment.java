@@ -40,6 +40,7 @@ public class collapseDetailProductFragment extends Fragment {
 
         for (int i = 0; i < 6; i++){
             arrayList.add("Item "+i);
+            Log.i("Tag", "Knopfe wird gedrückt");
         }
 
         collapseRecyclerView = view.findViewById(R.id.collapseHorizontalRecyclerView);

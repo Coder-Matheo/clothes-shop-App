@@ -26,6 +26,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.lstTitle = lstTitle;
         this.context = context;
         this.onClickInterfaceAdapter = onClickInterfaceAdapter1;
+
     }
 
     @NonNull

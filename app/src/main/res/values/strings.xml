@@ -5,4 +5,10 @@
       dream, GeeksforGeeks. Whether programming excites you or you feel
       stifled, wondering how to prepare for interview questions or how
   </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="KontoStr">Konto</string>
+    <string name="HomeStr">Home</string>
+    <string name="warenkorbStr">Warenkorb</string>
+    <string name="AngesehenStr">Angesehen</string>
 </resources>
