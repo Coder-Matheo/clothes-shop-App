@@ -17,6 +17,32 @@
         android:layout_marginRight="10sp"
         android:scaleType="centerInside"
         />
+    <TextView
+        android:id="@+id/descriptionInRecyclerViewInCollapseTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description Of Product"
+        android:textSize="18sp"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textStyle="normal"
+        android:textColor="@color/black"
+
+        />
+    <TextView
+        android:id="@+id/priceInRecyclerViewInCollapseTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="price Of Product"
+        android:textSize="18sp"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textStyle="normal"
+        android:textColor="@color/black"
+
+        />
 
 
 </LinearLayout>

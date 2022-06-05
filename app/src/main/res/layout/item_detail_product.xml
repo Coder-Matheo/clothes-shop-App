@@ -5,11 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingTop="10dp"
-    
     android:id="@+id/linearLayoutId">
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewProduct"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
@@ -30,7 +30,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/description_item_textView"
+            android:id="@+id/descriptionItemTextView"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -59,7 +59,7 @@
     </GridLayout>
 
     <TextView
-        android:id="@+id/price_item_textView"
+        android:id="@+id/priceItemTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
@@ -68,7 +68,6 @@
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="#7B6A6A"
-
         android:textStyle="bold" />
 
 </LinearLayout>

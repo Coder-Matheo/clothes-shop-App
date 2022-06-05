@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -67,11 +68,20 @@ public class DetailProduct extends Fragment implements OnClickInterfaceAdapter{
     }
 
     @Override
-    public void onClickListenerInterface(int position) {
-        Log.i(TAG, "onClickListener: "+ position);
+    public void onClickListenerInterface(int position, TextView descriptionProduct, TextView priceOfProduct) {
+        Log.i(TAG, "onClickListener: "+ position + " : "+ descriptionProduct +" : "+ priceOfProduct);
 
+        //Transfer Data through Bundle
+        Bundle mDataBundle = new Bundle();
+        mDataBundle.putString("descriptionOfProductBundle", descriptionProduct.getText().toString());
+        mDataBundle.putString("priceOfProductBundle", priceOfProduct.getText().toString());
+
+        collapseDetailProductFragment collapseDetailProductFragment = new collapseDetailProductFragment();
+        collapseDetailProductFragment.setArguments(mDataBundle);
+
+        //Mechanism to jump to detail
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container_view, new collapseDetailProductFragment())
+                .replace(R.id.fragment_container_view, collapseDetailProductFragment)
                 .commit();
     }
 }

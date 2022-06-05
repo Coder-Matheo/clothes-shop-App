@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
         topToolbar = findViewById(R.id.topTollBar);
 
-
-
         setRecyclerViewHorizontal();
         setTabLayout();
     }

@@ -26,7 +26,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.lstTitle = lstTitle;
         this.context = context;
         this.onClickInterfaceAdapter = onClickInterfaceAdapter1;
-
     }
 
     @NonNull
@@ -43,16 +42,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new MyViewHolder(view);
     }
 
+    //Set Price and description to MainActivity
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        //holder.description_item_textView.setText(lstTitle.get(position));
+
     }
 
     @Override
     public int getItemCount() {
         return lstTitle.size();
     }
-
 
     @Override
     public int getItemViewType(int position) {
@@ -66,25 +65,29 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public  class MyViewHolder extends RecyclerView.ViewHolder{
 
         LinearLayout layout;
-        TextView description_item_textView;
-
+        TextView descriptionItemTextView;
+        TextView priceItemTextView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             layout = itemView.findViewById(R.id.linearLayoutId);
-            description_item_textView = itemView.findViewById(R.id.description_item_textView);
+            descriptionItemTextView = itemView.findViewById(R.id.descriptionItemTextView);
+            priceItemTextView = itemView.findViewById(R.id.priceItemTextView);
 
+            //Clickable LinearLayout
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onClickInterfaceAdapter.onClickListenerInterface(getAdapterPosition());
+                    //Adapter Class doesn't accept jumping mechanism, because we put it in DetailProduct Fragment
+                    //For this reason, we use onClickInterface
+                    onClickInterfaceAdapter.onClickListenerInterface(getAdapterPosition(),
+                            descriptionItemTextView, priceItemTextView);
+                    Log.i("Tag", "LinearLayout Click through RecyclerViewAdapter");
+                    Log.i("Tag", priceItemTextView.getText().toString());
+                    Log.i("Tag", descriptionItemTextView.getText().toString());
                 }
             });
         }
-
-
     }
-
-
 }

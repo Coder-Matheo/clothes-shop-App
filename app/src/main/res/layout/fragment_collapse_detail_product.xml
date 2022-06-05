@@ -35,7 +35,6 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -53,8 +52,6 @@
                             android:layout_marginTop="42dp"
                             android:background="@drawable/background_login_button"
                             android:src="@drawable/businessman" />
-
-
 
 
                     </LinearLayout>
@@ -92,15 +89,6 @@
                 android:orientation="vertical"
                 >
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/content"
-                    android:textSize="23dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:textStyle="bold" />
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/collapseHorizontalRecyclerView"
                     android:layout_width="match_parent"
@@ -108,6 +96,27 @@
                     android:layout_marginBottom="20dp"
                     android:layout_gravity="bottom"
                     />
+
+                <TextView
+                    android:id="@+id/descriptionCollapseTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Description Text"
+                    android:textSize="23dp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/priceCollapseTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Description Text"
+                    android:textSize="23dp"
+                    android:textStyle="bold" />
+
+
 
 
             </LinearLayout>
