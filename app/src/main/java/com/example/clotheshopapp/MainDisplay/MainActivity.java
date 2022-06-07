@@ -2,14 +2,18 @@ package com.example.clotheshopapp.MainDisplay;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
+import com.example.clotheshopapp.MainDisplay.Account.AccountFragment;
 import com.example.clotheshopapp.MainDisplay.Detail.DetailProduct;
 import com.example.clotheshopapp.R;
 import com.google.android.material.tabs.TabLayout;
@@ -24,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
     Toolbar topToolbar;
-
+    ImageButton accountImageButton;
+    private static final String TAG = "MainActivity";
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +40,26 @@ public class MainActivity extends AppCompatActivity {
         topToolbar = findViewById(R.id.topTollBar);
 
         setRecyclerViewHorizontal();
+        setButtonAccountFragment();
         setTabLayout();
     }
+
+    private void setButtonAccountFragment() {
+        accountImageButton = findViewById(R.id.accountImageButton);
+        accountImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(android.R.anim.slide_in_left,
+                        android.R.anim.slide_out_right, android.R.anim.fade_in, android.R.anim.fade_out)
+                        .replace(R.id.fragment_container_view,
+                        new AccountFragment()).commit();
+
+            }
+        });
+    }
+
 
     public void setRecyclerViewHorizontal(){
         recyclerViewHorizontal = findViewById(R.id.recyclerview_horizontal);
@@ -78,3 +102,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+

@@ -1,5 +1,6 @@
 package com.example.clotheshopapp.MainDisplay.Detail;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,10 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,14 +30,17 @@ public class collapseDetailProductFragment extends Fragment {
     String descriptionOfProductValue;
     String priceOfProductValue;
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_collapse_detail_product, container, false);
 
-
         getBundleValueFromMainSetValue(view);
         setCollapseHorizontalRecyclerView(view, getContext());
+
+
         return view;
     }
 
@@ -62,14 +70,9 @@ public class collapseDetailProductFragment extends Fragment {
 
         collapseRecyclerView = view.findViewById(R.id.collapseHorizontalRecyclerView);
         recyclerCollapseAdapter = new RecyclerCollapseAdapter(context, arrayList, descriptionOfProductValue, priceOfProductValue);
-        collapseRecyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
+        collapseRecyclerView.setLayoutManager(new GridLayoutManager(context,  2));
         collapseRecyclerView.setAdapter(recyclerCollapseAdapter);
 
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
 

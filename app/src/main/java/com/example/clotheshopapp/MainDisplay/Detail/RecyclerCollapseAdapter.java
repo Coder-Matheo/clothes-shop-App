@@ -1,7 +1,6 @@
 package com.example.clotheshopapp.MainDisplay.Detail;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,13 +33,20 @@ public class RecyclerCollapseAdapter extends RecyclerView.Adapter<RecyclerCollap
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_collapse_scroll_part, parent, false);
+
+        setValueToCollapseSameProduct(view);
+        return new MyViewHolder(view);
+    }
+
+    private void setValueToCollapseSameProduct(View view) {
         TextView descriptionInRecyclerViewInCollapseTextView = view.findViewById(R.id.descriptionInRecyclerViewInCollapseTextView);
         TextView priceInRecyclerViewInCollapseTextView = view.findViewById(R.id.priceInRecyclerViewInCollapseTextView);
 
         descriptionInRecyclerViewInCollapseTextView.setText(descriptionOfProduct);
         priceInRecyclerViewInCollapseTextView.setText(priceOfProduct);
-        return new MyViewHolder(view);
+
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
