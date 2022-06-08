@@ -1,66 +1,114 @@
 package com.example.clotheshopapp.MainDisplay.Account;
 
+import android.app.ActivityOptions;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import com.example.clotheshopapp.MainDisplay.MainActivity;
 import com.example.clotheshopapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AccountFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class AccountFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    Button profileBackButton;
+    TextView emailAccountTextView;
+    TextView passwordAccountTextView;
+    TextView numberAccountTextView;
+    private static final String TAG = "AccountFragment";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public AccountFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AccountFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AccountFragment newInstance(String param1, String param2) {
-        AccountFragment fragment = new AccountFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account, container, false);
+        View view = inflater.inflate(R.layout.fragment_account, container, false);
+
+
+
+        setProfilBackButton(view);
+
+        setInitElement(view);
+        return view;
     }
+
+    private void setInitElement(View view) {
+        passwordAccountTextView = view.findViewById(R.id.passwordAccountTextView);
+        emailAccountTextView = view.findViewById(R.id.emailAccountTextView);
+        numberAccountTextView = view.findViewById(R.id.numberAccountTextView);
+
+        View.OnClickListener handler = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()){
+                    case R.id.emailAccountTextView:
+                        setEditableTextView(view, emailAccountTextView, "E-Mail");
+                        break;
+                    case R.id.passwordAccountTextView:
+                        setEditableTextView(view, passwordAccountTextView, "Password");
+                        break;
+                    case R.id.numberAccountTextView:
+                        setEditableTextView(view, numberAccountTextView, "Phone Number");
+                        break;
+                }
+            }
+        };
+
+        passwordAccountTextView.setOnClickListener(handler);
+        emailAccountTextView.setOnClickListener(handler);
+        numberAccountTextView.setOnClickListener(handler);
+    }
+
+
+    private void setProfilBackButton(View view) {
+        profileBackButton = view.findViewById(R.id.profilBackButton);
+        profileBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(getContext(),
+                        android.R.anim.fade_in, android.R.anim.fade_out);
+                startActivity(intent, options.toBundle());
+
+            }
+        });
+    }
+
+    private void setEditableTextView(View view, TextView emailAccountTextView, String titleDialog) {
+
+        AlertDialog dialog = new AlertDialog.Builder(getContext()).create();
+        EditText emailEditText = new EditText(getContext());
+        emailEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+
+        dialog.setTitle("Edit " + titleDialog);
+        dialog.setView(emailEditText);
+
+        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save ", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                emailAccountTextView.setText(emailEditText.getText());
+            }
+        });
+
+        emailAccountTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                emailEditText.setText(emailAccountTextView.getText());
+                dialog.show();
+            }
+        });
+    }
+
+
+
 }
