@@ -31,13 +31,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_detail_product2, parent, false);
 
-        Log.i("TAG", "onCreateViewHolder: "+viewType);
-        if (viewType == 2){
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_detail_product, parent, false);
+
+        /*if (viewType == 2){
+
         }else {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_detail_product2, parent, false);
-        }
+        }*/
 
         return new MyViewHolder(view);
     }
@@ -53,14 +54,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return lstTitle.size();
     }
 
-    @Override
+    /*@Override
     public int getItemViewType(int position) {
         if ((position+1) % 5 * 2 == 0){
             return 2;
         }else {
             return 1;
         }
-    }
+    }*/
 
     public  class MyViewHolder extends RecyclerView.ViewHolder{
 
@@ -83,9 +84,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     //For this reason, we use onClickInterface
                     onClickInterfaceAdapter.onClickListenerInterface(getAdapterPosition(),
                             descriptionItemTextView, priceItemTextView);
-                    Log.i("Tag", "LinearLayout Click through RecyclerViewAdapter");
-                    Log.i("Tag", priceItemTextView.getText().toString());
-                    Log.i("Tag", descriptionItemTextView.getText().toString());
+
                 }
             });
         }

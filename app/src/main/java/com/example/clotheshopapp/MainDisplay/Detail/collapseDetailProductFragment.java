@@ -66,8 +66,6 @@ public class collapseDetailProductFragment extends Fragment {
             arrayList.add("Item "+i);
         }
 
-
-
         collapseRecyclerView = view.findViewById(R.id.collapseHorizontalRecyclerView);
         recyclerCollapseAdapter = new RecyclerCollapseAdapter(context, arrayList, descriptionOfProductValue, priceOfProductValue);
         collapseRecyclerView.setLayoutManager(new GridLayoutManager(context,  2));

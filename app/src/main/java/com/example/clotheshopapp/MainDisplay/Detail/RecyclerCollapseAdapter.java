@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class RecyclerCollapseAdapter extends RecyclerView.Adapter<RecyclerCollapseAdapter.MyViewHolder> {
     Context context;
-    ArrayList<String> lstTitle ;
+    ArrayList<String> lstTitle;
     String descriptionOfProduct;
     String priceOfProduct;
 

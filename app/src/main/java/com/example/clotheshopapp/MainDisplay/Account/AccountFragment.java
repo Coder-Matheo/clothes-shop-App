@@ -1,19 +1,24 @@
 package com.example.clotheshopapp.MainDisplay.Account;
 
+import android.Manifest;
 import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.clotheshopapp.MainDisplay.MainActivity;
@@ -26,6 +31,7 @@ public class AccountFragment extends Fragment {
     TextView emailAccountTextView;
     TextView passwordAccountTextView;
     TextView numberAccountTextView;
+    ImageView imageAddImageView;
     private static final String TAG = "AccountFragment";
 
 
@@ -34,12 +40,23 @@ public class AccountFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
-
-
         setProfilBackButton(view);
+        setAddImageProfil(view);
 
         setInitElement(view);
         return view;
+    }
+
+    private void setAddImageProfil(View view) {
+
+        imageAddImageView = view.findViewById(R.id.imageAddImageView);
+        imageAddImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.i(TAG, "onClick: ");
+            }
+        });
     }
 
     private void setInitElement(View view) {
