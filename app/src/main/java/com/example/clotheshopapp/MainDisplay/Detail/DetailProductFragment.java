@@ -18,9 +18,9 @@ import com.example.clotheshopapp.R;
 
 import java.util.ArrayList;
 
-public class DetailProduct extends Fragment implements OnClickInterfaceAdapter{
+public class DetailProductFragment extends Fragment implements OnClickInterfaceAdapter{
 
-    private static final String TAG = DetailProduct.class.getSimpleName();
+    private static final String TAG = DetailProductFragment.class.getSimpleName();
     RecyclerView recyclerView;
     RecyclerViewAdapter recyclerViewAdapter;
 
@@ -80,8 +80,10 @@ public class DetailProduct extends Fragment implements OnClickInterfaceAdapter{
         collapseDetailProductFragment.setArguments(mDataBundle);
 
         //Mechanism to jump to detail
+        //addToBackStack help you to back last jumping Fragment/Activity
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container_view, collapseDetailProductFragment)
+                .addToBackStack(null)
                 .commit();
     }
 }

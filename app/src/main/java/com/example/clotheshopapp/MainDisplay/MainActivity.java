@@ -6,15 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.example.clotheshopapp.MainDisplay.Account.AccountFragment;
-import com.example.clotheshopapp.MainDisplay.Detail.DetailProduct;
+import com.example.clotheshopapp.MainDisplay.Detail.DetailProductFragment;
 import com.example.clotheshopapp.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -82,13 +81,13 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        viewPagerAdapter.addFragment(new DetailProduct(), "Men");
-        viewPagerAdapter.addFragment(new DetailProduct(), "Women");
-        viewPagerAdapter.addFragment(new DetailProduct(), "Children");
-        viewPagerAdapter.addFragment(new DetailProduct(), "Men");
-        viewPagerAdapter.addFragment(new DetailProduct(), "Men");
-        viewPagerAdapter.addFragment(new DetailProduct(), "Men");
-        viewPagerAdapter.addFragment(new DetailProduct(), "Men");
+        viewPagerAdapter.addFragment(new DetailProductFragment(), "Men");
+        viewPagerAdapter.addFragment(new DetailProductFragment(), "Women");
+        viewPagerAdapter.addFragment(new DetailProductFragment(), "Children");
+        viewPagerAdapter.addFragment(new DetailProductFragment(), "Men");
+        viewPagerAdapter.addFragment(new DetailProductFragment(), "Men");
+        viewPagerAdapter.addFragment(new DetailProductFragment(), "Men");
+        viewPagerAdapter.addFragment(new DetailProductFragment(), "Men");
 
 
         titleTabLayout.add("Basic");
@@ -99,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
 
-        
+        //Detect selected Tab in tabLayout
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -120,5 +119,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //call super
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }
 
