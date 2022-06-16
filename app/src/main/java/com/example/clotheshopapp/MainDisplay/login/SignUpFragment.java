@@ -11,12 +11,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.clotheshopapp.R;
 
-public class loginFragment extends Fragment {
+public class SignUpFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.loggin_fragment, container, false);
+        View view = inflater.inflate(R.layout.register_fragment, container, false);
         return view;
     }
 }

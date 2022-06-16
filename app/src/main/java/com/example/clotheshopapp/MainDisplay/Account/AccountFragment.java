@@ -45,6 +45,7 @@ public class AccountFragment extends Fragment {
     TextView passwordAccountTextView;
     TextView numberAccountTextView;
     ImageView imageAddImageView;
+    ImageView profileImageView;
 
 
     private static final String TAG = "AccountFragment";
@@ -55,6 +56,8 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+
+        profileImageView = view.findViewById(R.id.profileImageView);
 
         setProfilBackButton(view);
         setAddImageProfil(view);
@@ -134,8 +137,8 @@ public class AccountFragment extends Fragment {
 
     private void setAddImageProfil(View view) {
 
-        imageAddImageView = view.findViewById(R.id.imageAddImageView);
-        imageAddImageView.setOnClickListener(new View.OnClickListener() {
+        profileImageView = view.findViewById(R.id.profileImageView);
+        profileImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Ask to permission
@@ -178,17 +181,16 @@ public class AccountFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==0 && resultCode == Activity.RESULT_OK){
-            try {
-                Bundle bundle = data.getExtras();
-                Bitmap bitmap = bundle.getParcelable("data");
-                Log.i(TAG, "onActivityResult: "+ bitmap);
-                //img_user.setImageBitmap(bitmap);
-                //imageAddImageView.setImageBitmap(bitmap);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        Uri uri = data.getData();
+
+        try {
+            InputStream inputStream = getActivity().getContentResolver().openInputStream(uri);
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            profileImageView.setImageBitmap(bitmap);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+
     }
 
 }

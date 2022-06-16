@@ -8,16 +8,20 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 
 import com.example.clotheshopapp.MainDisplay.Account.AccountFragment;
 import com.example.clotheshopapp.MainDisplay.Detail.DetailProductFragment;
+import com.example.clotheshopapp.MainDisplay.login.LoggingActivity;
 import com.example.clotheshopapp.R;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
     Toolbar topToolbar;
-    ImageButton accountImageButton;
+    CircleImageView accountImageButton;
     private static final String TAG = "MainActivity";
     
 
@@ -37,11 +41,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         topToolbar = findViewById(R.id.topTollBar);
+        //topToolbar.setSubtitle("Test Subtitle");
+
+
+
+
 
         setRecyclerViewHorizontal();
         setButtonAccountFragment();
         setTabLayout();
+        setOptionsMenuSelect();
+        timeCountdown(30000);
     }
+
+
 
     private void setButtonAccountFragment() {
         accountImageButton = findViewById(R.id.accountImageButton);
@@ -119,10 +132,54 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+    private void timeCountdown(int secondCountdown) {
+        new CountDownTimer(30000, 1000){
+            @Override
+            public void onTick(long l) {
+                Log.i(TAG, "onTick: "+l);
+            }
+
+            @Override
+            public void onFinish() {
+                Log.i(TAG, "Off Finished");
+
+            }
+        }.start();
+
+    }
+
+
+    private void setOptionsMenuSelect() {
+        topToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Log.i(TAG, "onMenuItemClick: "+item.getItemId());
+                switch (item.getItemId()){
+                    case R.id.signUp_logging_main_menu:
+                        Intent intent = new Intent(getApplicationContext(), LoggingActivity.class);
+
+                        startActivity(intent);
+                        return true;
+                    case R.id.warenkorb_main_menu:
+                        Log.i(TAG, "onMenuItemClick: warenkorb");
+                        return true;
+                }
+                return false;
+            }
+        });
+    }
+
+
+
+    //for access Image Phone
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //call super
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+
 }
 

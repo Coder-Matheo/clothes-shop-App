@@ -11,4 +11,5 @@
     <string name="HomeStr">Home</string>
     <string name="warenkorbStr">Warenkorb</string>
     <string name="AngesehenStr">Angesehen</string>
+    <string name="endet_in">endet in</string>
 </resources>

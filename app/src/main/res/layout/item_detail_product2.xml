@@ -24,14 +24,15 @@
             android:src="@drawable/businessman" />
     </androidx.cardview.widget.CardView>
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:columnCount="2"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/descriptionItemTextView"
-            android:layout_width="360dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="3dp"
             android:text="Casual V-neck"
@@ -41,21 +42,22 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="16sp"
             android:textStyle="bold" />
+
         <androidx.cardview.widget.CardView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="bottom|right"
-            android:backgroundTint="#E8E8E8"
-            app:cardCornerRadius="25dp">
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:backgroundTint="#FF9800"
+            >
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_favorite_border_like" />
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_shopping" />
         </androidx.cardview.widget.CardView>
 
 
-    </LinearLayout>
+    </GridLayout>
 
     <TextView
         android:id="@+id/priceItemTextView"

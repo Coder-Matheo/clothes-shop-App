@@ -45,7 +45,7 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
         recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstTitle, this::onClickListenerInterface);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
-        Log.i(TAG, "onCreateView: ");
+
         //Set span size
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -69,7 +69,7 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
 
     @Override
     public void onClickListenerInterface(int position, TextView descriptionProduct, TextView priceOfProduct) {
-        Log.i(TAG, "onClickListener: "+ position + " : "+ descriptionProduct +" : "+ priceOfProduct);
+
 
         //Transfer Data through Bundle
         Bundle mDataBundle = new Bundle();

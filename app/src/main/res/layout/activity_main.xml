@@ -60,22 +60,20 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <androidx.cardview.widget.CardView
+                    android:orientation="horizontal">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/accountImageButton"
+                        android:scaleType="centerCrop"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        app:cardCornerRadius="12dp">
-                        <ImageButton
-                            android:layout_gravity="center"
-                            android:id="@+id/accountImageButton"
-                            android:scaleType="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_person"/>
-                    </androidx.cardview.widget.CardView>
+                        android:layout_gravity="center"
+                        android:src="@drawable/my_avatar"
+                        android:background="@drawable/border_account_image_view"
+                        />
+
 
                 </LinearLayout>
+
             </androidx.appcompat.widget.Toolbar>
 
             <androidx.recyclerview.widget.RecyclerView

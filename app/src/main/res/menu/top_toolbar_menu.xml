@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:icon="@drawable/ic_home"
-        android:title="@string/KontoStr"/>
-    <item android:icon="@drawable/ic_home"
-        android:title="@string/warenkorbStr"/>
-    <item android:icon="@drawable/ic_home"
-        android:title="@string/AngesehenStr"/>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/signUp_logging_main_menu"
+        android:icon="@drawable/ic_home"
+        android:title="@string/KontoStr"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/warenkorb_main_menu"
+        android:icon="@drawable/ic_home"
+        android:title="@string/warenkorbStr"
+        app:showAsAction="never" />
+    <item
+        android:icon="@drawable/ic_home"
+        android:title="@string/AngesehenStr"
+        app:showAsAction="never" />
 
 
 </menu>
