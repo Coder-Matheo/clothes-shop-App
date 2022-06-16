@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.clotheshopapp.MainDisplay.Account.AccountFragment;
 import com.example.clotheshopapp.MainDisplay.Detail.DetailProductFragment;
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerHorizontalAdapter = new RecyclerHorizontalAdapter(this, arrayList);
         recyclerViewHorizontal.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+
         recyclerViewHorizontal.setAdapter(recyclerHorizontalAdapter);
     }
 
@@ -116,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 Log.i(TAG, "onTabSelected: "+tab.getPosition());
-
             }
 
             @Override

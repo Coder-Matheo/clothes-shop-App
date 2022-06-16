@@ -34,7 +34,7 @@ public class LoggingActivity extends AppCompatActivity {
         signup_text_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new LoginFragment());
+                replaceFragment(new SignUpFragment());
             }
 
 
@@ -43,7 +43,7 @@ public class LoggingActivity extends AppCompatActivity {
         logging_text_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new SignUpFragment());
+                replaceFragment(new LoginFragment());
             }
         });
     }

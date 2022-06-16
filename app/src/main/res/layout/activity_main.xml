@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainDisplay.MainActivity"
+    android:background="#FFFFFF"
 
-    android:background="#3C5398">
+    tools:context=".MainDisplay.MainActivity">
 
 
     <FrameLayout
+        android:id="@+id/fragment_container_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fragment_container_view">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,38 +22,41 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/topTollBar"
                 android:layout_width="match_parent"
-                app:menu="@menu/top_toolbar_menu"
+                android:layout_height="40dp"
                 android:backgroundTint="@color/white"
-                android:layout_height="40dp">
+                app:menu="@menu/top_toolbar_menu">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
                         android:text="Matt, Dina"
-                        android:textSize="12dp"
-                        android:textStyle="normal"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textAlignment="center"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:textStyle="normal" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="Germany, Ffm"
                         android:textAlignment="center"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textStyle="bold"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
-                        android:text="Germany, Ffm"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -61,15 +64,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/accountImageButton"
-                        android:scaleType="centerCrop"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/my_avatar"
                         android:background="@drawable/border_account_image_view"
-                        />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/my_avatar" />
 
 
                 </LinearLayout>
@@ -79,7 +82,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp" />
 
             <com.google.android.material.tabs.TabLayout
@@ -89,19 +92,23 @@
                 android:background="@android:color/transparent"
                 android:elevation="0dp"
                 android:hapticFeedbackEnabled="true"
-                app:tabBackground="@null"
-                app:tabIndicator="@color/purple_500"
-                app:tabIndicatorColor="#D9A817"
-                app:tabMode="scrollable"
-                app:tabTextColor="#200AF2"
                 android:scrollbarStyle="insideInset"
-                app:tabSelectedTextColor="#D900ED"
-                app:tabTextAppearance="@style/MyCustomTabTextAppearance" />
+                app:tabBackground="@null"
+                app:tabIndicator="@drawable/selected_tab_background"
+                app:tabIndicatorColor="@color/purple_500"
+                app:tabMode="scrollable"
+                app:tabGravity="fill"
+                app:tabIndicatorGravity="stretch"
+                app:tabSelectedTextColor="#FFFFFF"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicatorAnimationDuration="2"
+                app:tabTextAppearance="@style/MyCustomTabTextAppearance"
+                app:tabTextColor="#1F1D1D" />
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp" />
         </LinearLayout>
         <!--<com.google.android.material.bottomnavigation.BottomNavigationView

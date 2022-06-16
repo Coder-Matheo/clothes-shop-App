@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="60dp"
+        android:paddingTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,26 +29,23 @@
             android:paddingTop="10dp"
             android:paddingRight="20dp"
             android:paddingLeft="20dp"
-            android:paddingBottom="20dp"
+            android:paddingBottom="20dp">
 
 
-            >
-
-            <androidx.cardview.widget.CardView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/signup_image_view"
+                android:scaleType="centerCrop"
+                android:background="@drawable/border_account_image_view"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                app:cardCornerRadius="50dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                >
-                <ImageButton
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/white"
-                    android:src="@drawable/ic_add"/>
-            </androidx.cardview.widget.CardView>
+                android:backgroundTint="@color/white"
+                android:src="@drawable/ic_add"/>
+
 
             <EditText
+                android:id="@+id/emailSignUpEditText"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="10dp"
@@ -60,6 +57,7 @@
                 android:textSize="22sp" />
 
             <EditText
+                android:id="@+id/passwordSignUpEditText"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@drawable/background_pass_edittext"
@@ -72,6 +70,7 @@
                 android:layout_marginBottom="10dp" />
 
             <EditText
+                android:id="@+id/passwordRepeatSignUpEditText"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@drawable/background_pass_edittext"
@@ -93,6 +92,7 @@
 
 
             <Button
+                android:id="@+id/createAccountSignUpButton"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/background_create_account_button"
@@ -105,10 +105,11 @@
                 android:textStyle="bold" />
 
             <ImageButton
+                android:id="@+id/existAccountSignUpButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/background_login_button"
-                android:src="@drawable/ic_arrow_back"
+                android:src="@drawable/ic_arrow_forward"
                 android:layout_gravity="center"
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"

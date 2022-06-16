@@ -1,51 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="12dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:backgroundTint="@color/purple_200">
+    >
+
+        <GridLayout
+            android:id="@+id/topGridLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+            <ImageView
+                android:id="@+id/topImageView"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="left"
+                android:src="@drawable/businessman" />
 
-        <ImageView
-            android:layout_width="132dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:src="@drawable/businessman" />
+            <LinearLayout
+                android:layout_width="244dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="200dp"
+                android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="218dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/titleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:freezesText="true"
+                    android:text="Big Off"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Big Off"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:textColor="@color/black"
-                android:textAlignment="textStart"
-                android:textAllCaps="false"
-                android:freezesText="true"/>
-            <TextView
-                android:layout_width="218dp"
-                android:layout_height="84dp"
-                android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-             sed diam nonumy eirmod tempor invidunt ut labore et dolore magna" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/topTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr,sed diam nonumy eirmod tempor invidunt ut labore et dolore magna" />
+            </LinearLayout>
 
-    </GridLayout>
-
-
-
+        </GridLayout>
 
 </androidx.cardview.widget.CardView>

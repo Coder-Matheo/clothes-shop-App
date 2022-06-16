@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEF2F2"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".MainDisplay.Account.AccountFragment">
+
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,13 +19,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="50dp">
+
             <Button
                 android:id="@+id/profilBackButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/ic_arrow_back"
-                android:backgroundTint="@color/black"
-                />
+                android:backgroundTint="@color/black" />
         </androidx.cardview.widget.CardView>
 
     </androidx.appcompat.widget.Toolbar>
@@ -32,44 +33,49 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profileImageView"
-        android:scaleType="centerCrop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
-        android:padding="10dp"
         android:background="@drawable/border_profile_image_view"
-        />
-
-
-
+        android:padding="10dp"
+        android:scaleType="centerCrop" />
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_linearlayout"
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_gravity="center"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email"
-                android:labelFor="@+id/emailAccountTextView"/>
+                android:layout_marginLeft="10dp"
+                android:labelFor="@+id/emailAccountTextView"
+                android:text="Email" />
+
             <TextView
                 android:id="@+id/emailAccountTextView"
                 android:layout_width="280dp"
                 android:layout_height="60dp"
-
                 android:layout_marginBottom="20dp"
+                android:background="@drawable/background_account_text_view"
+                android:gravity="center_vertical"
+                android:textAlignment="gravity"
                 android:hint="E-Mail"
-                android:text="Ali@gmail.com"
                 android:inputType="textEmailAddress"
+                android:paddingLeft="10dp"
+                android:text="Ali@gmail.com"
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/black"
@@ -81,22 +87,30 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+            android:layout_height="80dp"
             android:layout_gravity="center"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Password"
-                android:labelFor="@+id/passwordAccountTextView"/>
+                android:layout_marginLeft="10dp"
+                android:labelFor="@+id/passwordAccountTextView"
+                android:text="Password" />
+
             <TextView
                 android:id="@+id/passwordAccountTextView"
                 android:layout_width="280dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
+                android:background="@drawable/background_account_text_view"
                 android:hint="Password"
+                android:gravity="center_vertical"
+                android:textAlignment="gravity"
                 android:inputType="numberPassword"
+                android:paddingLeft="10dp"
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/black"
@@ -105,24 +119,32 @@
                 android:textStyle="normal" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_gravity="center"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:labelFor="@+id/numberAccountTextView"
-                android:text="Phone Number"/>
+                android:text="Phone Number" />
+
             <TextView
                 android:id="@+id/numberAccountTextView"
                 android:layout_width="280dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
+                android:background="@drawable/background_account_text_view"
                 android:hint="Number"
+                android:gravity="center_vertical"
+                android:textAlignment="gravity"
                 android:inputType="number"
+                android:paddingLeft="10dp"
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/black"
@@ -134,29 +156,70 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_gravity="center"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:labelFor="@+id/numberAccountTextView"
-                android:text="Location"/>
-        <TextView
-            android:id="@+id/locationAccountTextView"
-            android:layout_width="280dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:hint="Location"
-            android:inputType="text"
-            android:textAllCaps="false"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textSize="24sp"
-            android:textStyle="normal" />
+                android:text="Location" />
+
+            <TextView
+                android:id="@+id/locationAccountTextView"
+                android:layout_width="280dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/background_account_text_view"
+                android:hint="Location"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical"
+                android:textAlignment="gravity"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="24sp"
+                android:textStyle="normal" />
         </LinearLayout>
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/background_linearlayout"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnOne"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:width="100dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_instagram" />
+
+        <ImageButton
+            android:id="@+id/btnTwo"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:width="100dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_twitter" />
+
+
+        <ImageButton
+            android:id="@+id/btnThree"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:width="100dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_meta" />
+    </LinearLayout>
 </LinearLayout>
