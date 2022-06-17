@@ -13,6 +13,9 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.clotheshopapp.MainDisplay.Account.AccountFragment;
@@ -34,8 +37,11 @@ public class MainActivity extends AppCompatActivity {
     ViewPagerAdapter viewPagerAdapter;
     Toolbar topToolbar;
     CircleImageView accountImageButton;
+    TextView usernameMainTextView;
+
+    int i;
     private static final String TAG = "MainActivity";
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +49,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         topToolbar = findViewById(R.id.topTollBar);
-        //topToolbar.setSubtitle("Test Subtitle");
-
-
-
 
 
         setRecyclerViewHorizontal();
         setButtonAccountFragment();
         setTabLayout();
         setOptionsMenuSelect();
-        timeCountdown(30000);
+        setUsernameOfToolbar();
+
     }
 
+    private void setUsernameOfToolbar() {
+        //need get Data from Database
+        usernameMainTextView = findViewById(R.id.usernameMainTextView);
+    }
 
 
     private void setButtonAccountFragment() {
@@ -136,21 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void timeCountdown(int secondCountdown) {
-        new CountDownTimer(30000, 1000){
-            @Override
-            public void onTick(long l) {
-                Log.i(TAG, "onTick: "+l);
-            }
 
-            @Override
-            public void onFinish() {
-                Log.i(TAG, "Off Finished");
-
-            }
-        }.start();
-
-    }
 
 
     private void setOptionsMenuSelect() {
@@ -166,6 +159,16 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.warenkorb_main_menu:
                         Log.i(TAG, "onMenuItemClick: warenkorb");
+                        return true;
+                    case R.id.topOffButton:
+                        Log.i(TAG, "onMenuItemClick: More");
+                        if (i % 2 == 0){
+
+                            recyclerViewHorizontal.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,300));
+                        }else {
+                            recyclerViewHorizontal.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,0));
+                        }
+                        i++;
                         return true;
                 }
                 return false;

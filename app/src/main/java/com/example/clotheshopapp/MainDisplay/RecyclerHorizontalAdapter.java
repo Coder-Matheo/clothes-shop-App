@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,6 +53,8 @@ public class RecyclerHorizontalAdapter extends RecyclerView.Adapter<RecyclerHori
         holder.titleTextView.setTextColor(selected_position == position ? Color.BLACK : Color.GRAY);
         holder.topImageView.setAlpha(selected_position == position ? 200: 50);
 
+
+
         txt = holder.topTextView.getText();
         String texts = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr," +
                 " sed diam nonumy eirmod tempor invidunt ut labore et dolore "+
@@ -81,6 +84,7 @@ public class RecyclerHorizontalAdapter extends RecyclerView.Adapter<RecyclerHori
         ImageView topImageView;
         GridLayout topGridLayout;
 
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
@@ -89,6 +93,7 @@ public class RecyclerHorizontalAdapter extends RecyclerView.Adapter<RecyclerHori
             titleTextView = itemView.findViewById(R.id.titleTextView);
             topImageView = itemView.findViewById(R.id.topImageView);
             topGridLayout = itemView.findViewById(R.id.topGridLayout);
+
         }
 
         @Override

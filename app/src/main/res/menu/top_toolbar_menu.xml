@@ -15,6 +15,11 @@
         android:icon="@drawable/ic_home"
         android:title="@string/AngesehenStr"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/topOffButton"
+        android:icon="@drawable/ic_menu"
+        android:title="more"
+        app:showAsAction="always"/>
 
 
 </menu>

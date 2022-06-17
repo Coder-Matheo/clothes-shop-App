@@ -37,6 +37,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/usernameMainTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Matt, Dina"
@@ -48,6 +49,7 @@
                         android:textStyle="normal" />
 
                     <TextView
+                        android:id="@+id/locationMainTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Germany, Ffm"
@@ -78,19 +80,28 @@
                 </LinearLayout>
 
             </androidx.appcompat.widget.Toolbar>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview_horizontal"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp" />
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="5dp" />
+            </LinearLayout>
+
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_height="24dp"
                 android:background="@android:color/transparent"
                 android:elevation="0dp"
+                android:layout_marginTop="0dp"
                 android:hapticFeedbackEnabled="true"
                 android:scrollbarStyle="insideInset"
                 app:tabBackground="@null"
@@ -98,6 +109,7 @@
                 app:tabIndicatorColor="@color/purple_500"
                 app:tabMode="scrollable"
                 app:tabGravity="fill"
+                android:layout_marginBottom="10dp"
                 app:tabIndicatorGravity="stretch"
                 app:tabSelectedTextColor="#FFFFFF"
                 app:tabIndicatorAnimationMode="elastic"
@@ -109,7 +121,7 @@
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp" />
+                 />
         </LinearLayout>
         <!--<com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"

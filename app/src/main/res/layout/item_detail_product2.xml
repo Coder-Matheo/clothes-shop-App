@@ -4,23 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="5dp"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp">
+    android:paddingTop="2dp"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp">
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewProduct"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:backgroundTint="@color/teal_200"
-        app:cardCornerRadius="1dp">
+        app:cardCornerRadius="6dp">
 
         <ImageView
             android:id="@+id/imageViewRow"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:src="@drawable/businessman" />
     </androidx.cardview.widget.CardView>
 
@@ -43,18 +43,18 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <androidx.cardview.widget.CardView
+        <!--<androidx.cardview.widget.CardView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="right"
-            android:backgroundTint="#FF9800"
+            android:backgroundTint="@color/baseColor"
             >
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginRight="10dp"
                 android:src="@drawable/ic_shopping" />
-        </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>-->
 
 
     </GridLayout>
@@ -63,7 +63,20 @@
         android:id="@+id/priceItemTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="12$"
+        android:text="@string/endet_in"
+        android:paddingLeft="3dp"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#7B6A6A"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/timerItemTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp"
+        android:text="Timer"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"

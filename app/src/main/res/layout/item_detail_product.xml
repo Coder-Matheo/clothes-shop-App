@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:paddingTop="10dp"
+    android:paddingTop="0dp"
     android:id="@+id/linearLayoutId">
 
 
@@ -27,42 +27,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="2"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/descriptionItemTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:text="Casual V-neck"
+            android:text="Casual-neck"
             android:textAllCaps="false"
             android:textSize="16sp"
             android:layout_gravity="left"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textStyle="bold" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="right"
-
-            android:layout_marginRight="20dp"
-            android:backgroundTint="#FF9800">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-
-                android:src="@drawable/ic_shopping" />
-        </androidx.cardview.widget.CardView>
-
-    </GridLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
         <TextView
             android:id="@+id/priceItemTextView"
             android:layout_width="match_parent"
@@ -85,7 +62,22 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="#7B6A6A"
             android:textStyle="bold" />
+        <!--<androidx.cardview.widget.CardView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
 
-    </LinearLayout>
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#FF9800">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_shopping" />
+        </androidx.cardview.widget.CardView>-->
+
+    </GridLayout>
+
+ >
 
 </LinearLayout>

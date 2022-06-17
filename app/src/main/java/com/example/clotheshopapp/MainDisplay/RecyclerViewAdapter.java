@@ -1,7 +1,6 @@
-package com.example.clotheshopapp.MainDisplay.Detail;
+package com.example.clotheshopapp.MainDisplay;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.clotheshopapp.MainDisplay.Detail.OnClickInterfaceAdapter;
+import com.example.clotheshopapp.MainDisplay.SameFeature.RunnableCountDownTimer;
 import com.example.clotheshopapp.R;
 
 import java.util.ArrayList;
@@ -21,6 +22,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> lstTitle;
     private Context context;
     public OnClickInterfaceAdapter onClickInterfaceAdapter;
+    private static final String TAG = "RecyclerViewAdapter";
+
+
 
     public RecyclerViewAdapter( Context context, ArrayList<String> lstTitle, OnClickInterfaceAdapter onClickInterfaceAdapter1) {
         this.lstTitle = lstTitle;
@@ -43,9 +47,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new MyViewHolder(view);
     }
 
+
+
     //Set Price and description to MainActivity
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        RunnableCountDownTimer timer = new RunnableCountDownTimer(view.getContext());
+        timer.countDownTimer(20000,holder.timerItemTextView);
 
     }
 
@@ -68,6 +76,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         LinearLayout layout;
         TextView descriptionItemTextView;
         TextView priceItemTextView;
+        TextView timerItemTextView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,6 +84,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             layout = itemView.findViewById(R.id.linearLayoutId);
             descriptionItemTextView = itemView.findViewById(R.id.descriptionItemTextView);
             priceItemTextView = itemView.findViewById(R.id.priceItemTextView);
+            timerItemTextView = itemView.findViewById(R.id.timerItemTextView);
 
             //Clickable LinearLayout
             itemView.setOnClickListener(new View.OnClickListener() {
