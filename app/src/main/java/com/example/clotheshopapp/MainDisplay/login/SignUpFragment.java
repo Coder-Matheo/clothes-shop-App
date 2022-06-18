@@ -9,14 +9,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -80,19 +78,23 @@ public class SignUpFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                Log.i(TAG, "beforeTextChanged:1 "+ i);
+                Log.i(TAG, "beforeTextChanged:1 "+ i1);
+                Log.i(TAG, "beforeTextChanged:1 "+ i2);
+                Log.i(TAG, "beforeTextChanged:1 "+ charSequence);
 
                 Pattern VALID_EMAIL_ADDRESS_REGEX =
                         Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
 
                 Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(charSequence);
-
-
-                if (matcher.find()){
+                Log.i(TAG, "onTextChanged 69: "+matcher.find());
+                boolean valid = matcher.find();
+                if (valid){
                     setStrongPasswordValidation();
                     Log.i(TAG, "onTextChanged: Valid Email");
-                }else       {
+                    setEmailPasswordProcessElementUI();
+                }if(valid == true) {
                     Log.i(TAG, "onTextChanged: UnValid Email");
                 }
             }
@@ -118,13 +120,12 @@ public class SignUpFragment extends Fragment {
                 Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
                 Matcher matcher = pattern.matcher(charSequence);
 
-
+                Log.i(TAG, "onTextChanged: "+matcher.matches());
                 Log.i(TAG, "onTextChanged: "+charSequence);
-                if (matcher.matches()){
-                    Log.i(TAG, "onTextChanged: TRUE");
-                    setEmailPasswordProcessElementUI();
-                }
 
+                if (passwordSignUpEditText == passwordRepeatSignUpEditText){
+                    Log.i(TAG, "onTextChanged: is equal");
+                }
             }
 
             @Override
@@ -137,45 +138,23 @@ public class SignUpFragment extends Fragment {
     }
 
     private void setEmailPasswordProcessElementUI() {
-
-
+        String email = emailSignUpEditText.getText().toString().trim();
+        String password = passwordSignUpEditText.getText().toString().trim();
+        String repeatPassword = passwordRepeatSignUpEditText.getText().toString().trim();
 
         createAccountSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String password = passwordSignUpEditText.getText().toString();
-                String repeatPassword = passwordRepeatSignUpEditText.getText().toString().trim();
-                String email = emailSignUpEditText.getText().toString().trim();
 
-                Log.i(TAG, "onClick: "+ password + " : "+ repeatPassword);
-                if (password.equals(repeatPassword)){
-                    Log.i(TAG, "onClick: Password and Repeat Password is Equal");
-                    if(email.equals("ali@gmail.com")){
-                        Toast toast = new Toast(getContext());
-                        View view1 = LayoutInflater.from(getContext()).inflate(R.layout.background_custom_toast, null);
-                        toast.setView(view1);
-                        toast.setDuration(Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.BOTTOM, 0, 0);
-                        toast.show();
-
-
-                        setSignUpExistAccount();
-                    }
+                if (password == repeatPassword){
+                    Log.i(TAG, "onClick: ");
+                }else {
+                    Log.i(TAG, "onClick: if Account Exist");
+                    setJumpToExistAccount();
                 }
             }
         });
     }
-
-    private void setSignUpExistAccount() {
-        existAccountSignUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setJumpToExistAccount();
-            }
-        });
-
-    }
-
 
     private void setJumpToExistAccount() {
         Log.i(TAG, "setJumpExistAccount: ");
