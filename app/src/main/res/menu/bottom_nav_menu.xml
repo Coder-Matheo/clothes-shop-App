@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title=""
+        android:id="@+id/homeBottomNavItem"
+        android:iconTintMode="add"
         android:icon="@drawable/ic_home"/>
     <item android:title=""
+        android:id="@+id/noteBottomNavItem"
+        android:iconTintMode="multiply"
         android:icon="@drawable/ic_note"/>
     <item android:title=""
+        android:id="@+id/shopBottomNavItem"
+        android:iconTintMode="screen"
         android:icon="@drawable/ic_shopping"/>
     <item android:title=""
+        android:id="@+id/accountBottomNavItem"
+        android:iconTintMode="src_over"
         android:icon="@drawable/ic_person"/>
 </menu>

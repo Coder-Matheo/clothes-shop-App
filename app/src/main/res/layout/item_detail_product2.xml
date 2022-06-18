@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_gravity="center"
-        android:backgroundTint="@color/teal_200"
+        android:backgroundTint="@color/boxColor"
         app:cardCornerRadius="6dp">
 
         <ImageView
@@ -40,7 +40,7 @@
             android:textAlignment="textStart"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <!--<androidx.cardview.widget.CardView

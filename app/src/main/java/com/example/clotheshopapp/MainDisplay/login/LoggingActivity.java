@@ -1,7 +1,5 @@
 package com.example.clotheshopapp.MainDisplay.login;
 
-import static android.graphics.Color.GREEN;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -10,7 +8,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -37,7 +34,7 @@ public class LoggingActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
-        logging_text_view.setTextColor(getResources().getColor(R.color.baseColor));
+        logging_text_view.setTextColor(getResources().getColor(R.color.combineColor));
         logging_text_view.setTypeface(null, Typeface.BOLD);
 
         signup_text_view.setOnClickListener(new View.OnClickListener() {
@@ -59,12 +56,12 @@ public class LoggingActivity extends AppCompatActivity {
     private void replaceFragment(Fragment fragment, String nameOfFragment) {
 
         if (nameOfFragment.equals("LoginFragment") ){
-            logging_text_view.setTextColor(getResources().getColor(R.color.baseColor));
+            logging_text_view.setTextColor(getResources().getColor(R.color.combineColor));
             logging_text_view.setTypeface( null, Typeface.BOLD);
             signup_text_view.setTextColor(Color.BLACK);
             signup_text_view.setTypeface( null, Typeface.NORMAL);
         }else {
-            signup_text_view.setTextColor(getResources().getColor(R.color.baseColor));
+            signup_text_view.setTextColor(getResources().getColor(R.color.combineColor));
             signup_text_view.setTypeface( null, Typeface.BOLD);
             logging_text_view.setTextColor(Color.BLACK);
             logging_text_view.setTypeface( null, Typeface.NORMAL);

@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-
     tools:context=".MainDisplay.MainActivity">
 
 
@@ -80,6 +79,7 @@
                 </LinearLayout>
 
             </androidx.appcompat.widget.Toolbar>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,40 +96,42 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
                 android:layout_height="24dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginBottom="10dp"
                 android:background="@android:color/transparent"
                 android:elevation="0dp"
-                android:layout_marginTop="0dp"
                 android:hapticFeedbackEnabled="true"
                 android:scrollbarStyle="insideInset"
+                android:textSize="14sp"
                 app:tabBackground="@null"
-                app:tabIndicator="@drawable/selected_tab_background"
-                app:tabIndicatorColor="@color/purple_500"
-                app:tabMode="scrollable"
                 app:tabGravity="fill"
-                android:layout_marginBottom="10dp"
-                app:tabIndicatorGravity="stretch"
-                app:tabSelectedTextColor="#FFFFFF"
-                app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicator="@drawable/selected_tab_background"
                 app:tabIndicatorAnimationDuration="2"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicatorColor="@color/combineColor"
+                app:tabIndicatorGravity="stretch"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="#FFFFFF"
                 app:tabTextAppearance="@style/MyCustomTabTextAppearance"
                 app:tabTextColor="#1F1D1D" />
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                 />
+                android:layout_height="wrap_content" />
         </LinearLayout>
-        <!--<com.google.android.material.bottomnavigation.BottomNavigationView
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/mainBottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_gravity="bottom"
+            app:labelVisibilityMode="labeled"
             android:background="@drawable/custom_bottom_nav"
-            app:menu="@menu/bottom_nav_menu"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_gravity="bottom"/>-->
+
+            app:menu="@menu/bottom_nav_menu" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
