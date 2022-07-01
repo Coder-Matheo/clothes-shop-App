@@ -14,7 +14,7 @@ import retrofit2.http.POST;
 public interface ServerApi {
 
     @GET("/user/get-all")
-    Call<List<UserData>> getAllEmployees();
+    Call<List<UserData>> getAllUser();
 
     @POST("/user/save")
     Call<UserData> save(@Body UserData userData);
