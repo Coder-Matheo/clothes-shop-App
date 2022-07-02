@@ -16,12 +16,8 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainDisplay.LoadServerTestActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MainDisplay.login.LoggingActivity"
@@ -29,8 +25,11 @@
         <activity
             android:name=".MainDisplay.MainActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

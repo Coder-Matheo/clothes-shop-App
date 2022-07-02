@@ -1,4 +1,4 @@
-package com.example.clotheshopapp.MainDisplay;
+package com.example.clotheshopapp.MainDisplay.Retrofit1;
 
 import com.google.gson.Gson;
 
