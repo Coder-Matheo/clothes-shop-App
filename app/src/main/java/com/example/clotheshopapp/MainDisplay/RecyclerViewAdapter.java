@@ -29,18 +29,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private View view;
     private ArrayList<String> lstTitle;
+    ArrayList<String> lstProductPrice = new ArrayList<>();
+    ArrayList<String> lstProductName = new ArrayList<>();
+    ArrayList<String> lstProductDataOff = new ArrayList<>();
     private Context context;
     public OnClickInterfaceAdapter onClickInterfaceAdapter;
     private static final String TAG = "RecyclerViewAdapter";
 
 
-    RetrofitService1 retrofitService1 = new RetrofitService1();
-    ServerApi serverApi = retrofitService1.getRetrofit().create(ServerApi.class);
 
 
-    public RecyclerViewAdapter(Context context, ArrayList<String> lstTitle, OnClickInterfaceAdapter onClickInterfaceAdapter1) {
+
+    public RecyclerViewAdapter(Context context, ArrayList<String> lstTitle,ArrayList<String> lstProductName,
+                               ArrayList<String> lstProductPrice, ArrayList<String> lstProductDataOff,OnClickInterfaceAdapter onClickInterfaceAdapter1) {
 
         this.lstTitle = lstTitle;
+        this.lstProductPrice = lstProductPrice;
+        this.lstProductName = lstProductName;
+        this.lstProductDataOff = lstProductDataOff;
         this.context = context;
         this.onClickInterfaceAdapter = onClickInterfaceAdapter1;
     }
@@ -63,23 +69,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        serverApi.getAllProduct()
-                .enqueue(new Callback<List<ProductData>>() {
-                    @Override
-                    public void onResponse(Call<List<ProductData>> call, Response<List<ProductData>> response) {
-                        RunnableCountDownTimer timer = new RunnableCountDownTimer(view.getContext());
-                        for (int i = 0; i < 5; i++){
-                            holder.priceItemTextView.setText(response.body().get(i).getProPrice());
-                        }
+        RunnableCountDownTimer timer = new RunnableCountDownTimer(view.getContext());
+        timer.countDownTimer(Integer.valueOf(lstProductDataOff.get(position)), holder.timerItemTextView);
 
-                        timer.countDownTimer(Integer.valueOf(response.body().get(0).getDateOff()), holder.timerItemTextView);
-                    }
+        holder.priceItemTextView.setText(lstProductPrice.get(position));
+        holder.descriptionItemTextView.setText(lstProductName.get(position));
 
-                    @Override
-                    public void onFailure(Call<List<ProductData>> call, Throwable t) {
 
-                    }
-                });
     }
 
     @Override
@@ -99,7 +95,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        LinearLayout layout;
         TextView descriptionItemTextView;
         TextView priceItemTextView;
         TextView timerItemTextView;
@@ -108,7 +103,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            layout = itemView.findViewById(R.id.linearLayoutId);
+
             descriptionItemTextView = itemView.findViewById(R.id.descriptionItemTextView);
             priceItemTextView = itemView.findViewById(R.id.priceItemTextView);
             timerItemTextView = itemView.findViewById(R.id.timerItemTextView);

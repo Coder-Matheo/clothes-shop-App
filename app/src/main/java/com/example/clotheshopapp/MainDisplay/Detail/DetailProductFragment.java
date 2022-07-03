@@ -1,6 +1,7 @@
 package com.example.clotheshopapp.MainDisplay.Detail;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,54 +14,94 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.clotheshopapp.MainDisplay.Model.ProductData;
 import com.example.clotheshopapp.MainDisplay.RecyclerViewAdapter;
+import com.example.clotheshopapp.MainDisplay.Retrofit1.RetrofitService1;
+import com.example.clotheshopapp.MainDisplay.Retrofit1.ServerApi;
+import com.example.clotheshopapp.MainDisplay.SameFeature.RunnableCountDownTimer;
 import com.example.clotheshopapp.R;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class DetailProductFragment extends Fragment implements OnClickInterfaceAdapter{
 
     private static final String TAG = DetailProductFragment.class.getSimpleName();
     RecyclerView recyclerView;
     RecyclerViewAdapter recyclerViewAdapter;
+    //Initial Retrofit
+    RetrofitService1 retrofitService1 = new RetrofitService1();
+    ServerApi serverApi = retrofitService1.getRetrofit().create(ServerApi.class);
 
     View view;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_detail_product, container, false);
+
+        setGetDBServerValueAndSetRecyclerView(view);
+
+        return view;
+    }
+
+
+    private void setGetDBServerValueAndSetRecyclerView(View view) {
+
         recyclerView = view.findViewById(R.id.recyclerViewInTab);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         ArrayList<String> lstTitle = new ArrayList<>();
-        lstTitle.add("Hallo");
-        lstTitle.add("Hallo");
-        lstTitle.add("Hallo");
-        lstTitle.add("Hallo");
-        lstTitle.add("Hallo");
-        lstTitle.add("Hallo");
-        lstTitle.add("Hallo");
-        lstTitle.add("Hallo");
-        lstTitle.add("Hallo");
-        lstTitle.add("Hallo");
-        recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstTitle, this::onClickListenerInterface);
+        ArrayList<String> lstProductPrice = new ArrayList<>();
+        ArrayList<String> lstProductDataOff = new ArrayList<>();
+        ArrayList<String> lstProductImg = new ArrayList<>();
+        ArrayList<String> lstProductName = new ArrayList<>();
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
 
-        //Set span size
-        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                if ((position+1) % 5 * 2 == 0){
-                    return 2;
-                }else {
-                    return 1;
-                }
-            }
-        });
-        recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setAdapter(recyclerViewAdapter);
-        return view;
+        serverApi.getAllProduct()
+                .enqueue(new Callback<List<ProductData>>() {
+                    @Override
+                    public void onResponse(Call<List<ProductData>> call, Response<List<ProductData>> response) {
+
+                        for (int i = 0; i < response.body().size(); i++){
+
+                            lstTitle.add(String.valueOf(response.body().get(i).getId()));
+                            lstProductName.add(response.body().get(i).getProName());
+                            lstProductPrice.add(response.body().get(i).getProPrice());
+                            lstProductDataOff.add(response.body().get(i).getDateOff());
+
+                        }
+
+
+                        recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstTitle,lstProductName,lstProductPrice,
+                                lstProductDataOff, DetailProductFragment.this::onClickListenerInterface);
+
+                        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+
+                        //Set span size
+                        /*gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                            @Override
+                            public int getSpanSize(int position) {
+                                if ((position+1) % 5 * 2 == 0){
+                                    return 2;
+                                }else {
+                                    return 1;
+                                }
+                            }
+                        });*/
+                        recyclerView.setLayoutManager(gridLayoutManager);
+                        recyclerView.setAdapter(recyclerViewAdapter);
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<ProductData>> call, Throwable t) {
+                    }
+                });
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

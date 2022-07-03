@@ -36,7 +36,7 @@ public class RecyclerHorizontalAdapter extends RecyclerView.Adapter<RecyclerHori
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view ;
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main_test, parent, false);
 
         return new ViewHolder(view);
     }
@@ -74,7 +74,7 @@ public class RecyclerHorizontalAdapter extends RecyclerView.Adapter<RecyclerHori
 
     @Override
     public int getItemCount() {
-        return titleText.size();
+        return 10;
     }
 
 

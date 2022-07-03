@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.concurrent.TimeUnit;
+
 public class RunnableCountDownTimer {
 
     private static final String TAG = "RunnableCountDownTimer";
@@ -28,10 +30,18 @@ public class RunnableCountDownTimer {
                     @Override
                     public void onTick(long millisUntilFinished) {
                         int seconds = (int) (millisUntilFinished / 1000);
-                        int minutes = seconds / 60;
-                        seconds = seconds % 60;
-                        timerItemTextView.setText("TIME : " + String.format("%02d", minutes)
-                                + ":" + String.format("%02d", seconds));
+                        //int minutes = seconds / 60;
+                        //seconds = seconds % 60;
+
+                        int day = (int)TimeUnit.SECONDS.toDays(seconds);
+                        long hours = TimeUnit.SECONDS.toHours(seconds) - (day *24);
+                        long minute = TimeUnit.SECONDS.toMinutes(seconds) - (TimeUnit.SECONDS.toHours(seconds)* 60);
+                        long second = TimeUnit.SECONDS.toSeconds(seconds) - (TimeUnit.SECONDS.toMinutes(seconds) *60);
+
+
+
+                        timerItemTextView.setText(String.format("%02d", day) + ":" + String.format("%02d", hours)
+                                + ":" + String.format("%02d", minute));
 
                     }
 
