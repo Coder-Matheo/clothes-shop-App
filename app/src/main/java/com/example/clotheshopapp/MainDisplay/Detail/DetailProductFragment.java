@@ -18,7 +18,6 @@ import com.example.clotheshopapp.MainDisplay.Model.ProductData;
 import com.example.clotheshopapp.MainDisplay.RecyclerViewAdapter;
 import com.example.clotheshopapp.MainDisplay.Retrofit1.RetrofitService1;
 import com.example.clotheshopapp.MainDisplay.Retrofit1.ServerApi;
-import com.example.clotheshopapp.MainDisplay.SameFeature.RunnableCountDownTimer;
 import com.example.clotheshopapp.R;
 
 import java.util.ArrayList;
@@ -57,7 +56,7 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
         ArrayList<String> lstTitle = new ArrayList<>();
         ArrayList<String> lstProductPrice = new ArrayList<>();
         ArrayList<String> lstProductDataOff = new ArrayList<>();
-        ArrayList<String> lstProductImg = new ArrayList<>();
+        ArrayList<Byte[]> lstProductImg = new ArrayList<>();
         ArrayList<String> lstProductName = new ArrayList<>();
 
 
@@ -66,18 +65,21 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
                     @Override
                     public void onResponse(Call<List<ProductData>> call, Response<List<ProductData>> response) {
 
+                        Log.i(TAG, "onResponse: "+response.body());
+
                         for (int i = 0; i < response.body().size(); i++){
 
                             lstTitle.add(String.valueOf(response.body().get(i).getId()));
                             lstProductName.add(response.body().get(i).getProName());
                             lstProductPrice.add(response.body().get(i).getProPrice());
                             lstProductDataOff.add(response.body().get(i).getDateOff());
+                            lstProductImg.add(response.body().get(i).getImgProduct());
 
                         }
 
 
                         recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstTitle,lstProductName,lstProductPrice,
-                                lstProductDataOff, DetailProductFragment.this::onClickListenerInterface);
+                                lstProductDataOff,lstProductImg, DetailProductFragment.this::onClickListenerInterface);
 
                         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
 
@@ -94,6 +96,8 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
                         });*/
                         recyclerView.setLayoutManager(gridLayoutManager);
                         recyclerView.setAdapter(recyclerViewAdapter);
+                        recyclerViewAdapter.notifyDataSetChanged();
+
                     }
 
                     @Override

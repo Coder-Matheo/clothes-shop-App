@@ -1,11 +1,14 @@
 package com.example.clotheshopapp.MainDisplay.Retrofit1;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService1 {
+    private static final String TAG = "RetrofitService1";
     private Retrofit retrofit;
 
     public RetrofitService1() {
@@ -21,6 +24,7 @@ public class RetrofitService1 {
     }
 
     public Retrofit getRetrofit(){
+        Log.i(TAG, "getRetrofit: "+ retrofit);
         return retrofit;
     }
 }

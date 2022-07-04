@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     ArrayList<String> lstProductPrice = new ArrayList<>();
     ArrayList<String> lstProductName = new ArrayList<>();
     ArrayList<String> lstProductDataOff = new ArrayList<>();
+    ArrayList<Byte[]> lstProductImg = new ArrayList<>();
     private Context context;
     public OnClickInterfaceAdapter onClickInterfaceAdapter;
     private static final String TAG = "RecyclerViewAdapter";
@@ -41,12 +43,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     public RecyclerViewAdapter(Context context, ArrayList<String> lstTitle,ArrayList<String> lstProductName,
-                               ArrayList<String> lstProductPrice, ArrayList<String> lstProductDataOff,OnClickInterfaceAdapter onClickInterfaceAdapter1) {
+                               ArrayList<String> lstProductPrice, ArrayList<String> lstProductDataOff,
+                               ArrayList<Byte[]> lstProductImg,OnClickInterfaceAdapter onClickInterfaceAdapter1) {
 
         this.lstTitle = lstTitle;
         this.lstProductPrice = lstProductPrice;
         this.lstProductName = lstProductName;
         this.lstProductDataOff = lstProductDataOff;
+        this.lstProductImg = lstProductImg;
         this.context = context;
         this.onClickInterfaceAdapter = onClickInterfaceAdapter1;
     }
@@ -76,6 +80,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.descriptionItemTextView.setText(lstProductName.get(position));
 
 
+
+
     }
 
     @Override
@@ -98,6 +104,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView descriptionItemTextView;
         TextView priceItemTextView;
         TextView timerItemTextView;
+        ImageView productImageView;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -107,6 +114,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             descriptionItemTextView = itemView.findViewById(R.id.descriptionItemTextView);
             priceItemTextView = itemView.findViewById(R.id.priceItemTextView);
             timerItemTextView = itemView.findViewById(R.id.timerItemTextView);
+            productImageView = itemView.findViewById(R.id.productImageView);
 
             //Clickable LinearLayout
             itemView.setOnClickListener(new View.OnClickListener() {
