@@ -1,7 +1,6 @@
 package com.example.clotheshopapp.MainDisplay;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -15,7 +14,6 @@ import com.example.clotheshopapp.R;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

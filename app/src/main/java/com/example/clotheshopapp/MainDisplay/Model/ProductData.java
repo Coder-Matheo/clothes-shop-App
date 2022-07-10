@@ -9,7 +9,7 @@ public class ProductData {
     private String proPrice;
     private String dateOff;
 
-    private Byte[] imgProduct;
+    private byte[] imgProduct;
 
     public int getId() {
         return Id;
@@ -43,11 +43,11 @@ public class ProductData {
         this.dateOff = dateOff;
     }
 
-    public Byte[] getImgProduct() {
+    public byte[] getImgProduct() {
         return imgProduct;
     }
 
-    public void setImgProduct(Byte[] imgProduct) {
+    public void setImgProduct(byte[] imgProduct) {
         this.imgProduct = imgProduct;
     }
 

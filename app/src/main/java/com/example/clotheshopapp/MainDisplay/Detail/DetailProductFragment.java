@@ -30,12 +30,10 @@ import retrofit2.Response;
 
 public class DetailProductFragment extends Fragment implements OnClickInterfaceAdapter{
 
-    private static final String TAG = DetailProductFragment.class.getSimpleName();
+    private static final String TAG = "DetailProductFragment";
     RecyclerView recyclerView;
     RecyclerViewAdapter recyclerViewAdapter;
-    //Initial Retrofit
-    RetrofitService1 retrofitService1 = new RetrofitService1();
-    ServerApi serverApi = retrofitService1.getRetrofit().create(ServerApi.class);
+
 
     View view;
     @Nullable
@@ -56,8 +54,12 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
         ArrayList<String> lstTitle = new ArrayList<>();
         ArrayList<String> lstProductPrice = new ArrayList<>();
         ArrayList<String> lstProductDataOff = new ArrayList<>();
-        ArrayList<Byte[]> lstProductImg = new ArrayList<>();
+        ArrayList<byte[]> lstProductImg = new ArrayList<>();
         ArrayList<String> lstProductName = new ArrayList<>();
+
+        //Initial Retrofit
+        RetrofitService1 retrofitService1 = new RetrofitService1();
+        ServerApi serverApi = retrofitService1.getRetrofit().create(ServerApi.class);
 
 
         serverApi.getAllProduct()
@@ -65,7 +67,7 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
                     @Override
                     public void onResponse(Call<List<ProductData>> call, Response<List<ProductData>> response) {
 
-                        Log.i(TAG, "onResponse: "+response.body());
+
 
                         for (int i = 0; i < response.body().size(); i++){
 
@@ -74,6 +76,7 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
                             lstProductPrice.add(response.body().get(i).getProPrice());
                             lstProductDataOff.add(response.body().get(i).getDateOff());
                             lstProductImg.add(response.body().get(i).getImgProduct());
+
 
                         }
 

@@ -17,7 +17,7 @@ public interface ServerApi {
     Call<List<UserData>> getAllUser();
 
     @POST("/user/save")
-    Call<UserData> save(@Body UserData userData);
+    Call<UserData> saveUser(@Body UserData userData);
 
     @GET("/product/get-all")
     Call<List<ProductData>> getAllProduct();

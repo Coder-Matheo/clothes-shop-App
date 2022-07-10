@@ -1,6 +1,7 @@
 package com.example.clotheshopapp.MainDisplay;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     ArrayList<String> lstProductPrice = new ArrayList<>();
     ArrayList<String> lstProductName = new ArrayList<>();
     ArrayList<String> lstProductDataOff = new ArrayList<>();
-    ArrayList<Byte[]> lstProductImg = new ArrayList<>();
+    ArrayList<byte[]> lstProductImg = new ArrayList<>();
     private Context context;
     public OnClickInterfaceAdapter onClickInterfaceAdapter;
     private static final String TAG = "RecyclerViewAdapter";
@@ -44,7 +45,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public RecyclerViewAdapter(Context context, ArrayList<String> lstTitle,ArrayList<String> lstProductName,
                                ArrayList<String> lstProductPrice, ArrayList<String> lstProductDataOff,
-                               ArrayList<Byte[]> lstProductImg,OnClickInterfaceAdapter onClickInterfaceAdapter1) {
+                               ArrayList<byte[]> lstProductImg,OnClickInterfaceAdapter onClickInterfaceAdapter1) {
 
         this.lstTitle = lstTitle;
         this.lstProductPrice = lstProductPrice;
@@ -72,21 +73,29 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     //Set Price and description to MainActivity
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
         RunnableCountDownTimer timer = new RunnableCountDownTimer(view.getContext());
-        timer.countDownTimer(Integer.valueOf(lstProductDataOff.get(position)), holder.timerItemTextView);
+
+        int time = 0;
+
+        try {
+            time = Integer.valueOf(lstProductDataOff.get(position));
+
+            timer.countDownTimer(time, holder.timerItemTextView);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
 
         holder.priceItemTextView.setText(lstProductPrice.get(position));
         holder.descriptionItemTextView.setText(lstProductName.get(position));
-
-
+        holder.productImageView.setImageResource(R.drawable.imag1);
 
 
     }
 
     @Override
     public int getItemCount() {
-        return lstTitle.size();
+        return 5;
     }
 
 

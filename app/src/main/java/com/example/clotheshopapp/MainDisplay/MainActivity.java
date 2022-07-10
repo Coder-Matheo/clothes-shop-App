@@ -116,8 +116,7 @@ public class MainActivity extends AppCompatActivity {
         viewPagerAdapter.addFragment(new DetailProductFragment(), "Men");
         viewPagerAdapter.addFragment(new DetailProductFragment(), "Women");
         viewPagerAdapter.addFragment(new DetailProductFragment(), "Children");
-        viewPagerAdapter.addFragment(new DetailProductFragment(), "Men");
-        viewPagerAdapter.addFragment(new DetailProductFragment(), "Men");
+
 
 
         titleTabLayout.add("Basic");

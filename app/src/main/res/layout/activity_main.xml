@@ -113,7 +113,7 @@
                 app:tabIndicatorAnimationMode="elastic"
                 app:tabIndicatorColor="@color/combineColor"
                 app:tabIndicatorGravity="stretch"
-                app:tabMode="scrollable"
+                app:tabMode="fixed"
                 app:tabSelectedTextColor="#FFFFFF"
                 app:tabTextAppearance="@style/MyCustomTabTextAppearance"
                 app:tabTextColor="#1F1D1D" />
