@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.clotheshopapp.MainDisplay.Model.ProductData;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
 import com.example.clotheshopapp.MainDisplay.Retrofit1.RetrofitService1;
 import com.example.clotheshopapp.MainDisplay.Retrofit1.ServerApi;
 import com.example.clotheshopapp.R;
@@ -67,9 +67,9 @@ public class LoadData extends AppCompatActivity {
                 String location = String.valueOf(locationEditText.getText());
 
                 ProductData productData = new ProductData();
-                productData.setDateOff(price);
-                productData.setProPrice(location);
-                productData.setProName(name);
+                productData.setProduct_dateOff(price);
+                productData.setProductPrice(location);
+                productData.setProductName(name);
 
                 serverApi.save(productData).enqueue(new Callback<ProductData>() {
                     @Override

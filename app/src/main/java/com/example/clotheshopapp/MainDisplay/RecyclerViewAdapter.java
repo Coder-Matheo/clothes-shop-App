@@ -1,31 +1,20 @@
 package com.example.clotheshopapp.MainDisplay;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clotheshopapp.MainDisplay.Detail.OnClickInterfaceAdapter;
-import com.example.clotheshopapp.MainDisplay.Model.ProductData;
-import com.example.clotheshopapp.MainDisplay.Retrofit1.RetrofitService1;
-import com.example.clotheshopapp.MainDisplay.Retrofit1.ServerApi;
 import com.example.clotheshopapp.MainDisplay.SameFeature.RunnableCountDownTimer;
 import com.example.clotheshopapp.R;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 

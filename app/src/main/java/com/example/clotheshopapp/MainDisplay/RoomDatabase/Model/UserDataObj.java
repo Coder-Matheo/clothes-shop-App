@@ -1,20 +1,24 @@
-package com.example.clotheshopapp.MainDisplay.Model;
+package com.example.clotheshopapp.MainDisplay.RoomDatabase.Model;
+
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Arrays;
 
+@Entity
+public class UserDataObj {
 
-public class UserData {
-
-
+    @PrimaryKey(autoGenerate = true)
     private int id;
+
     private String userName;
 
     private String email;
     private String password;
     private String location;
     private String profilePhoto;
-
-
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] imgProfile;
     private int bankAccountNumber;
     private int backAccountPassword;

@@ -1,7 +1,6 @@
 package com.example.clotheshopapp.MainDisplay.Detail;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.clotheshopapp.MainDisplay.Model.ProductData;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
 import com.example.clotheshopapp.MainDisplay.RecyclerViewAdapter;
 import com.example.clotheshopapp.MainDisplay.Retrofit1.RetrofitService1;
 import com.example.clotheshopapp.MainDisplay.Retrofit1.ServerApi;
@@ -71,11 +70,11 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
 
                         for (int i = 0; i < response.body().size(); i++){
 
-                            lstTitle.add(String.valueOf(response.body().get(i).getId()));
-                            lstProductName.add(response.body().get(i).getProName());
-                            lstProductPrice.add(response.body().get(i).getProPrice());
-                            lstProductDataOff.add(response.body().get(i).getDateOff());
-                            lstProductImg.add(response.body().get(i).getImgProduct());
+                            lstTitle.add(String.valueOf(response.body().get(i).getBid()));
+                            lstProductName.add(response.body().get(i).getProductName());
+                            lstProductPrice.add(response.body().get(i).getProductPrice());
+                            lstProductDataOff.add(response.body().get(i).getProduct_dateOff());
+                            lstProductImg.add(response.body().get(i).getProduct_image());
 
 
                         }

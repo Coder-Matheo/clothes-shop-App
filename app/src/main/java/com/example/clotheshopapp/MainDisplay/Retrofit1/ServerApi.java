@@ -2,7 +2,7 @@ package com.example.clotheshopapp.MainDisplay.Retrofit1;
 
 import android.service.autofill.UserData;
 
-import com.example.clotheshopapp.MainDisplay.Model.ProductData;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
 
 import java.util.List;
 
