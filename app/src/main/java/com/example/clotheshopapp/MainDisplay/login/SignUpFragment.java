@@ -74,71 +74,10 @@ public class SignUpFragment extends Fragment {
 
     private void setEmailValidation() {
 
-
-        emailSignUpEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-
-                Pattern VALID_EMAIL_ADDRESS_REGEX =
-                        Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
-
-                Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(charSequence);
-                Log.i(TAG, "onTextChanged 69: "+matcher.find());
-                boolean valid = matcher.find();
-                if (valid){
-                    setStrongPasswordValidation();
-                    Log.i(TAG, "onTextChanged: Valid Email");
-                    setEmailPasswordProcessElementUI();
-                }if(valid == true) {
-                    Log.i(TAG, "onTextChanged: UnValid Email");
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+        setEmailPasswordProcessElementUI();
     }
 
-    private void setStrongPasswordValidation() {
 
-        passwordSignUpEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
-                Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
-                Matcher matcher = pattern.matcher(charSequence);
-
-                Log.i(TAG, "onTextChanged: "+matcher.matches());
-                Log.i(TAG, "onTextChanged: "+charSequence);
-
-                if (passwordSignUpEditText == passwordRepeatSignUpEditText){
-                    Log.i(TAG, "onTextChanged: is equal");
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-
-    }
 
     private void setEmailPasswordProcessElementUI() {
         String email = emailSignUpEditText.getText().toString().trim();

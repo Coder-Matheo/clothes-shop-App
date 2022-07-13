@@ -38,8 +38,6 @@ public class LoginFragment extends Fragment {
 
         LogInButton = view.findViewById(R.id.LogInButton);
 
-
-
         return view;
     }
 
