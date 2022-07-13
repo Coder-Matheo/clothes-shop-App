@@ -3,6 +3,8 @@ package com.example.clotheshopapp.MainDisplay;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -10,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Icon;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -23,6 +26,8 @@ import android.widget.TextView;
 
 import com.example.clotheshopapp.MainDisplay.Account.AccountFragment;
 import com.example.clotheshopapp.MainDisplay.Detail.DetailProductFragment;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonProduct;
 import com.example.clotheshopapp.MainDisplay.login.LoggingActivity;
 import com.example.clotheshopapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,6 +35,7 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -64,8 +70,44 @@ public class MainActivity extends AppCompatActivity {
         setUsernameOfToolbar();
         setBottomNavigationView();
 
+        //insertSingleProduct();
+        //getAllPro();
+
     }
 
+    private void getAllPro() {
+        LiveData<List<ProductData>> proList = MySingletonProduct.getInstance(getApplicationContext())
+                .productDao()
+                .getAllProducts();
+        proList.observe(this, new Observer<List<ProductData>>() {
+            @Override
+            public void onChanged(List<ProductData> productData) {
+                Log.i(TAG, "onChanged: "+ productData.toString());
+            }
+        });
+    }
+
+
+    public void insertSingleProduct(){
+        ProductData productData = new ProductData("Mattheo", "10000", "212");
+        InsertAsyncTask insertAsyncTask = new InsertAsyncTask();
+        insertAsyncTask.execute(productData);
+    }
+
+
+
+
+    class InsertAsyncTask extends AsyncTask<ProductData, Void, Void> {
+
+        @Override
+        protected Void doInBackground(ProductData... productData) {
+            MySingletonProduct.getInstance(getApplicationContext())
+                    .productDao()
+                    .insertProduct(productData[0]);
+            Log.i(TAG, "doInBackground: ");
+            return null;
+        }
+    }
 
 
     private void setUsernameOfToolbar() {

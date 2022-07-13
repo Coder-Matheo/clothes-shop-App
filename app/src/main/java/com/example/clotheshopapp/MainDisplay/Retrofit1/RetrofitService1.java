@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService1 {
     private static final String TAG = "RetrofitService1";
-    private  Retrofit retrofit;
+    /*private  Retrofit retrofit;
 
 
     public RetrofitService1() {

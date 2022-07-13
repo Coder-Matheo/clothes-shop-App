@@ -1,8 +1,9 @@
 package com.example.clotheshopapp.MainDisplay.RoomDatabase.Model;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.util.Arrays;
 
@@ -19,6 +20,16 @@ public class ProductData {
     private String product_dateOff;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB, name = "product_image")
     private byte[] product_image;
+
+    public ProductData(String productName, String productPrice, String product_dateOff) {
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.product_dateOff = product_dateOff;
+    }
+
+    public ProductData() {
+
+    }
 
     public int getBid() {
         return bid;

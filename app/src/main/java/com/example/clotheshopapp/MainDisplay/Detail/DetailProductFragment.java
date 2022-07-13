@@ -58,10 +58,10 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
 
         //Initial Retrofit
         RetrofitService1 retrofitService1 = new RetrofitService1();
-        ServerApi serverApi = retrofitService1.getRetrofit().create(ServerApi.class);
+        //ServerApi serverApi = retrofitService1.getRetrofit().create(ServerApi.class);
 
 
-        serverApi.getAllProduct()
+        /*serverApi.getAllProduct()
                 .enqueue(new Callback<List<ProductData>>() {
                     @Override
                     public void onResponse(Call<List<ProductData>> call, Response<List<ProductData>> response) {
@@ -96,7 +96,7 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
                                 }
                             }
                         });*/
-                        recyclerView.setLayoutManager(gridLayoutManager);
+                        /*recyclerView.setLayoutManager(gridLayoutManager);
                         recyclerView.setAdapter(recyclerViewAdapter);
                         recyclerViewAdapter.notifyDataSetChanged();
 
@@ -105,7 +105,7 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
                     @Override
                     public void onFailure(Call<List<ProductData>> call, Throwable t) {
                     }
-                });
+                });*/
     }
 
 

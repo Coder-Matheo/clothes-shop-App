@@ -1,14 +1,19 @@
 package com.example.clotheshopapp.MainDisplay;
 
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
 import com.example.clotheshopapp.MainDisplay.Retrofit1.RetrofitService1;
 import com.example.clotheshopapp.MainDisplay.Retrofit1.ServerApi;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonProduct;
 import com.example.clotheshopapp.R;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -25,17 +30,26 @@ public class LoadData extends AppCompatActivity {
 
     private static final String TAG = "loadData";
     RetrofitService1 retrofitService1 = new RetrofitService1();
-    ServerApi serverApi = retrofitService1.getRetrofit().create(ServerApi.class);
+    //ServerApi serverApi = retrofitService1.getRetrofit().create(ServerApi.class);
     List<ProductData> productDataList = new ArrayList<>();
     public LoadData(){
+
         initialListComponent();
+
     }
+
+
+
+
+
 
 
     private void initialListComponent() {
 
 
-        serverApi.getAllProduct()
+
+
+       /* serverApi.getAllProduct()
                 .enqueue(new Callback<List<ProductData>>() {
                     @Override
                     public void onResponse(Call<List<ProductData>> call, Response<List<ProductData>> response) {
@@ -48,7 +62,7 @@ public class LoadData extends AppCompatActivity {
 
                     }
                 });
-
+    */
 
     }
 
@@ -71,7 +85,7 @@ public class LoadData extends AppCompatActivity {
                 productData.setProductPrice(location);
                 productData.setProductName(name);
 
-                serverApi.save(productData).enqueue(new Callback<ProductData>() {
+                /*serverApi.save(productData).enqueue(new Callback<ProductData>() {
                     @Override
                     public void onResponse(Call<ProductData> call, Response<ProductData> response) {
                         Toast.makeText(LoadData.this, "Successfully", Toast.LENGTH_SHORT).show();
@@ -82,7 +96,7 @@ public class LoadData extends AppCompatActivity {
                         Toast.makeText(LoadData.this, "Failed", Toast.LENGTH_SHORT).show();
                         Logger.getLogger(LoadServerTestActivity.class.getName()).log(Level.SEVERE,"Error occurred",t);
                     }
-                });
+                });*/
 
             }
         });

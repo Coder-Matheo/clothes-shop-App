@@ -25,7 +25,7 @@ public class LoadServerTestActivity extends AppCompatActivity {
     private static final String TAG = "LoadServerTestActivity";
 
     RetrofitService1 retrofitService1 = new RetrofitService1();
-    ServerApi serverApi = retrofitService1.getRetrofit().create(ServerApi.class);
+    //ServerApi serverApi = retrofitService1.getRetrofit().create(ServerApi.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class LoadServerTestActivity extends AppCompatActivity {
                 productData.setProductPrice(location);
                 productData.setProductName(name);
 
-                serverApi.save(productData).enqueue(new Callback<ProductData>() {
+                /*serverApi.save(productData).enqueue(new Callback<ProductData>() {
                     @Override
                     public void onResponse(Call<ProductData> call, Response<ProductData> response) {
                         Toast.makeText(LoadServerTestActivity.this, "Successfully", Toast.LENGTH_SHORT).show();
@@ -91,7 +91,7 @@ public class LoadServerTestActivity extends AppCompatActivity {
                         Toast.makeText(LoadServerTestActivity.this, "Failed", Toast.LENGTH_SHORT).show();
                         Logger.getLogger(LoadServerTestActivity.class.getName()).log(Level.SEVERE,"Error occurred",t);
                     }
-                });
+                });*/
 
             }
         });

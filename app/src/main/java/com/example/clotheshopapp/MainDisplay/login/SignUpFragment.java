@@ -60,6 +60,12 @@ public class SignUpFragment extends Fragment {
         passwordRepeatSignUpEditText = view.findViewById(R.id.passwordRepeatSignUpEditText);
         createAccountSignUpButton = view.findViewById(R.id.createAccountSignUpButton);
         existAccountSignUpButton = view.findViewById(R.id.existAccountSignUpButton);
+
+        emailSignUpEditText.addTextChangedListener(new GenericTextWatcher(emailSignUpEditText));
+        passwordSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordRepeatSignUpEditText));
+        passwordRepeatSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordRepeatSignUpEditText));
+
+
         setEmailValidation();
 
 
@@ -78,10 +84,7 @@ public class SignUpFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                Log.i(TAG, "beforeTextChanged:1 "+ i);
-                Log.i(TAG, "beforeTextChanged:1 "+ i1);
-                Log.i(TAG, "beforeTextChanged:1 "+ i2);
-                Log.i(TAG, "beforeTextChanged:1 "+ charSequence);
+
 
                 Pattern VALID_EMAIL_ADDRESS_REGEX =
                         Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -107,7 +110,7 @@ public class SignUpFragment extends Fragment {
     }
 
     private void setStrongPasswordValidation() {
-        
+
         passwordSignUpEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
