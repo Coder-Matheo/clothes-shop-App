@@ -61,9 +61,9 @@ public class SignUpFragment extends Fragment {
         createAccountSignUpButton = view.findViewById(R.id.createAccountSignUpButton);
         existAccountSignUpButton = view.findViewById(R.id.existAccountSignUpButton);
 
-        emailSignUpEditText.addTextChangedListener(new GenericTextWatcher(emailSignUpEditText));
-        passwordSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordRepeatSignUpEditText));
-        passwordRepeatSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordRepeatSignUpEditText));
+        emailSignUpEditText.addTextChangedListener(new GenericTextWatcher(view, emailSignUpEditText, createAccountSignUpButton));
+        passwordSignUpEditText.addTextChangedListener(new GenericTextWatcher(view, passwordRepeatSignUpEditText, createAccountSignUpButton));
+        passwordRepeatSignUpEditText.addTextChangedListener(new GenericTextWatcher(view, passwordRepeatSignUpEditText, createAccountSignUpButton));
 
 
         setEmailValidation();
@@ -84,7 +84,7 @@ public class SignUpFragment extends Fragment {
         String password = passwordSignUpEditText.getText().toString().trim();
         String repeatPassword = passwordRepeatSignUpEditText.getText().toString().trim();
 
-        createAccountSignUpButton.setOnClickListener(new View.OnClickListener() {
+        /*createAccountSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -95,7 +95,7 @@ public class SignUpFragment extends Fragment {
                     setJumpToExistAccount();
                 }
             }
-        });
+        });*/
     }
 
     private void setJumpToExistAccount() {

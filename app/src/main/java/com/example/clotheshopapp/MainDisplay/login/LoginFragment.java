@@ -1,10 +1,6 @@
 package com.example.clotheshopapp.MainDisplay.login;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +10,6 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.example.clotheshopapp.R;
 
@@ -22,7 +17,8 @@ public class LoginFragment extends Fragment {
 
     EditText emailLogInEditText;
     EditText passwordLogInEditText;
-    Button LogInButton;
+    Button logInButton;
+    Button createAccountLogInButton;
     private static final String TAG = "LoginFragment";
 
     @Nullable
@@ -31,12 +27,14 @@ public class LoginFragment extends Fragment {
         View view = inflater.inflate(R.layout.log_in_fragment, container, false);
         emailLogInEditText = view.findViewById(R.id.emailLogInEditText);
         passwordLogInEditText = view.findViewById(R.id.passwordLogInEditText);
+        logInButton = view.findViewById(R.id.logInButton);
+        createAccountLogInButton = view.findViewById(R.id.createAccountLogInButton);
 
-        passwordLogInEditText.addTextChangedListener(new GenericTextWatcher(passwordLogInEditText));
-        emailLogInEditText.addTextChangedListener(new GenericTextWatcher(emailLogInEditText));
+        passwordLogInEditText.addTextChangedListener(new GenericTextWatcher(view,passwordLogInEditText, logInButton));
+        emailLogInEditText.addTextChangedListener(new GenericTextWatcher(view, emailLogInEditText, logInButton));
 
 
-        LogInButton = view.findViewById(R.id.LogInButton);
+
 
         return view;
     }

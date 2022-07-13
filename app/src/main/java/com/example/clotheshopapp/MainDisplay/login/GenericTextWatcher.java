@@ -4,6 +4,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.clotheshopapp.R;
 
@@ -17,9 +19,23 @@ class GenericTextWatcher implements TextWatcher {
     private static final String TAG = "GenericTextWatcher";
 
     private View view;
-    GenericTextWatcher(View view){
-        this.view = view;
+    Button logInButton;
+    GenericTextWatcher(View view, EditText passwordLogInEditText, Button logInButton){
+        this.view = this.view;
+        this.logInButton = logInButton;
+        setButton();
     }
+
+    private void setButton() {
+        this.logInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "onClick: + Hallo world"+logInButton.getText());
+
+            }
+        });
+    }
+
 
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -28,20 +44,21 @@ class GenericTextWatcher implements TextWatcher {
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
     }
-    List<String> ls = new ArrayList<>();
+
     @Override
     public void afterTextChanged(Editable editable) {
         String text = editable.toString();
+
+
         try{
             switch (view.getId()){
                 case R.id.emailLogInEditText:
                     Log.i(TAG, "emailLogInEditText: "+text);
                     validationEmail(text);
-                    ls.add(text);
                     break;
                 case R.id.passwordLogInEditText:
                     Log.i(TAG, "passwordLogInEditText: "+text);
-                    set();
+                    verifyStrongPassword(text);
                     break;
                 case R.id.emailSignUpEditText:
                     Log.i(TAG, "emailSignUpEditText: "+text);
@@ -58,6 +75,14 @@ class GenericTextWatcher implements TextWatcher {
         }catch (Exception e){
             e.printStackTrace();
         }
+
+
+        this.logInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void verifyStrongPassword(String passwordInput) {
@@ -71,6 +96,9 @@ class GenericTextWatcher implements TextWatcher {
         /*if (passwordSignUpEditText == passwordRepeatSignUpEditText){
             Log.i(TAG, "onTextChanged: is equal");
         }*/
+        List<String> emailList = new ArrayList<>();
+        List<String> passwordList = new ArrayList<>();
+        List<String> passwordRepeatList = new ArrayList<>();
     }
 
     public void validationEmail(String emailInput){
@@ -90,9 +118,6 @@ class GenericTextWatcher implements TextWatcher {
     }
 
 
-    private void set() {
-        //Log.i(TAG, "set: "+ls);
-    }
 
 
 }
