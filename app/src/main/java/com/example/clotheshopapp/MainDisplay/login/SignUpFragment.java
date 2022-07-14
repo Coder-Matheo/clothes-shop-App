@@ -26,6 +26,8 @@ import com.example.clotheshopapp.R;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,20 +52,22 @@ public class SignUpFragment extends Fragment {
         signUpImageCircleView = view.findViewById(R.id.signup_image_view);
 
         setElementUI(view);
-        setAddImageSignUp();
-        return view;
-    }
-
-    private void setElementUI(View view) {
         emailSignUpEditText = view.findViewById(R.id.emailSignUpEditText);
         passwordSignUpEditText = view.findViewById(R.id.passwordSignUpEditText);
         passwordRepeatSignUpEditText = view.findViewById(R.id.passwordRepeatSignUpEditText);
         createAccountSignUpButton = view.findViewById(R.id.createAccountSignUpButton);
         existAccountSignUpButton = view.findViewById(R.id.existAccountSignUpButton);
 
-        emailSignUpEditText.addTextChangedListener(new GenericTextWatcher(view, emailSignUpEditText, createAccountSignUpButton));
-        passwordSignUpEditText.addTextChangedListener(new GenericTextWatcher(view, passwordRepeatSignUpEditText, createAccountSignUpButton));
-        passwordRepeatSignUpEditText.addTextChangedListener(new GenericTextWatcher(view, passwordRepeatSignUpEditText, createAccountSignUpButton));
+        emailSignUpEditText.addTextChangedListener(new GenericTextWatcher(emailSignUpEditText, createAccountSignUpButton));
+        passwordSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordSignUpEditText, createAccountSignUpButton));
+        passwordRepeatSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordRepeatSignUpEditText, createAccountSignUpButton));
+
+        setAddImageSignUp();
+
+        return view;
+    }
+
+    private void setElementUI(View view) {
 
 
         setEmailValidation();
@@ -74,7 +78,7 @@ public class SignUpFragment extends Fragment {
 
     private void setEmailValidation() {
 
-        setEmailPasswordProcessElementUI();
+        //setEmailPasswordProcessElementUI();
     }
 
 
