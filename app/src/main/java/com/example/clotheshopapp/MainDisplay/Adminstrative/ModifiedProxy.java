@@ -1,5 +1,7 @@
 package com.example.clotheshopapp.MainDisplay.Adminstrative;
 
+import com.example.clotheshopapp.MainDisplay.MainActivity;
+
 import java.util.ArrayList;
 
 /**
@@ -24,7 +26,7 @@ class ModifiedProxy extends Subject{
 	}
 	
 	@Override
-	public void doSomeWork() {
+	public void doSomeWork(MainActivity mainActivity) {
 		System.out.println("\n Proxy call happening now...");
 		System.out.println(currentUser + " wants to invoke a Proxy method");
 		
@@ -34,7 +36,7 @@ class ModifiedProxy extends Subject{
 				cs = new ConcreteSubject();
 			}
 			//Allow the registered user to invoke the method 
-			cs.doSomeWork();
+			cs.doSomeWork(mainActivity);
 		}else {
 			System.out.println("Sorry "+currentUser+ " , you do not have access rights.");
 		}
