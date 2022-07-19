@@ -3,6 +3,8 @@ package com.example.clotheshopapp.MainDisplay;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -18,6 +20,8 @@ import android.widget.TextView;
 import com.example.clotheshopapp.MainDisplay.Account.AccountFragment;
 import com.example.clotheshopapp.MainDisplay.Adminstrative.QueryAuthorizedUser;
 import com.example.clotheshopapp.MainDisplay.Detail.DetailProductFragment;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonUser;
 import com.example.clotheshopapp.MainDisplay.login.LoggingActivity;
 import com.example.clotheshopapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,15 +34,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recyclerViewHorizontal;
-    RecyclerHorizontalAdapter recyclerHorizontalAdapter;
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    ViewPagerAdapter viewPagerAdapter;
-    Toolbar topToolbar;
-    CircleImageView accountImageButton;
-    TextView usernameMainTextView;
-    BottomNavigationView mainBottomNavigationView;
+    private RecyclerView recyclerViewHorizontal;
+    private RecyclerHorizontalAdapter recyclerHorizontalAdapter;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private ViewPagerAdapter viewPagerAdapter;
+    private Toolbar topToolbar;
+    private CircleImageView accountImageButton;
+    private TextView usernameMainTextView;
+    private BottomNavigationView mainBottomNavigationView;
 
     int i;
     private static final String TAG = "MainActivity";
@@ -59,9 +63,6 @@ public class MainActivity extends AppCompatActivity {
         setUsernameOfToolbar();
         setBottomNavigationView();
 
-
-        //decided System is Admin or normal User, then can to Upload new Product
-        QueryAuthorizedUser queryAuthorizedUser = new QueryAuthorizedUser(this, "Admin");
 
     }
 

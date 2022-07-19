@@ -25,7 +25,7 @@ public class LoggingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loggin);
 
-        signup_text_view = findViewById(R.id.signup_text_view);
+        signup_text_view = findViewById(R.id.admin_text_view);
         logging_text_view = findViewById(R.id.logging_text_view);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -40,7 +40,7 @@ public class LoggingActivity extends AppCompatActivity {
         signup_text_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new SignUpFragment(), "SignUpFragment");
+                replaceFragment(new AdminFragment(), "SignUpFragment");
             }
         });
 
@@ -73,8 +73,5 @@ public class LoggingActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
-
-
-
 
 }

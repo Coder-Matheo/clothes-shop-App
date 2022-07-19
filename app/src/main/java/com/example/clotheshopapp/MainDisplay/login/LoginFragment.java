@@ -34,8 +34,8 @@ public class LoginFragment extends Fragment {
         logInButton = view.findViewById(R.id.logInButton);
         createAccountLogInButton = view.findViewById(R.id.createAccountLogInButton);
 
-        passwordLogInEditText.addTextChangedListener(new GenericTextWatcher(passwordLogInEditText, logInButton));
-        emailLogInEditText.addTextChangedListener(new GenericTextWatcher(emailLogInEditText, logInButton));
+        passwordLogInEditText.addTextChangedListener(new GenericTextWatcher(passwordLogInEditText, logInButton, getViewLifecycleOwner()));
+        emailLogInEditText.addTextChangedListener(new GenericTextWatcher(emailLogInEditText, logInButton, getViewLifecycleOwner()));
 
 
         return view;

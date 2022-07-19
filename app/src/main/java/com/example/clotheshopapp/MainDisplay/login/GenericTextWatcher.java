@@ -1,11 +1,20 @@
 package com.example.clotheshopapp.MainDisplay.login;
 
+import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonUser;
 import com.example.clotheshopapp.R;
 
 import java.util.ArrayList;
@@ -18,18 +27,20 @@ import java.util.regex.Pattern;
 class GenericTextWatcher implements TextWatcher {
     HashMap<String, String> setin;
     private static final String TAG = "GenericTextWatcher";
-
-
-
-
-
+    private TextWatcherHelper textWatcherHelper;
+    private LifecycleOwner lifecycleOwner;
+    private Context context;
     private View view;
     Button inputButton;
-    GenericTextWatcher(View view,Button inputButton){
+
+
+    GenericTextWatcher(View view,Button inputButton,LifecycleOwner lifecycleOwner){
+        textWatcherHelper = new TextWatcherHelper(context, lifecycleOwner);
+        this.lifecycleOwner = lifecycleOwner;
         this.view = view;
         this.inputButton = inputButton;
-
     }
+
 
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -40,10 +51,6 @@ class GenericTextWatcher implements TextWatcher {
 
     }
 
-
-
-
-
     String text;
     @Override
     public void afterTextChanged(Editable editable) {
@@ -52,35 +59,33 @@ class GenericTextWatcher implements TextWatcher {
 
         switch (this.view.getId()){
             case R.id.emailLogInEditText:
-                if (validationEmail(text)){
+                if (textWatcherHelper.validationEmail(text)){
                     Log.i(TAG, "email verified true: "+ text);
                     setin.put("Email", text);
-
                 }
                 break;
             case R.id.passwordLogInEditText:
-                if (verifyStrongPassword(text)){
+                if (textWatcherHelper.verifyStrongPassword(text)){
                     Log.i(TAG, "Password Verified true: "+ text);
                     setin.put("Pass", text);
-
                 }
                 break;
             case R.id.emailSignUpEditText:
-                if (validationEmail(text)){
+                if (textWatcherHelper.validationEmail(text)){
                     Log.i(TAG, "email verified true: "+ text);
+                    textWatcherHelper.setFragmentManagerExistAccount();
                 }
                 break;
             case R.id.passwordSignUpEditText:
-                if (verifyStrongPassword(text)){
+                if (textWatcherHelper.verifyStrongPassword(text)){
                     Log.i(TAG, "Password Strong Verified true: "+ text);
                 }
                 break;
             case R.id.passwordRepeatSignUpEditText:
                 Log.i(TAG, "passwordRepeatSignUpEditText: "+text);
                 break;
+
         }
-
-
 
 
         inputButton.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +104,12 @@ class GenericTextWatcher implements TextWatcher {
                             break;
                         case R.id.createAccountSignUpButton:
                             Log.i(TAG, "Create new account");
+                            break;
+                        case R.id.existAccountSignUpButton:
+                            Log.i(TAG, "existAccountSignUpButton: ");
+
+
+
 
 
                             break;
@@ -108,38 +119,5 @@ class GenericTextWatcher implements TextWatcher {
                 }
             }
         });
-    }
-
-
-    private boolean verifyStrongPassword(String passwordInput) {
-        String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
-        Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
-        Matcher matcher = pattern.matcher(passwordInput);
-
-        /*if (passwordSignUpEditText == passwordRepeatSignUpEditText){
-            Log.i(TAG, "onTextChanged: is equal");
-        }*/
-
-        List<String> passwordRepeatList = new ArrayList<>();
-        if (matcher.matches()){
-            Log.i(TAG, "onTextChanged: "+matcher.matches());
-
-            return true;
-        }
-        return false;
-    }
-
-    public boolean validationEmail(String emailInput){
-        Pattern VALID_EMAIL_ADDRESS_REGEX =
-                Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailInput);
-        //Log.i(TAG, "Email validated: "+matcher.find());
-        boolean valid = matcher.find();
-        if (valid){
-            Log.i(TAG, "Valid Email");
-            return true;
-        }
-        return false;
     }
 }

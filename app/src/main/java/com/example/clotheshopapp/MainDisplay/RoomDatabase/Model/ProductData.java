@@ -1,6 +1,8 @@
 package com.example.clotheshopapp.MainDisplay.RoomDatabase.Model;
 
 
+import android.content.Context;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -30,6 +32,8 @@ public class ProductData {
     public ProductData() {
 
     }
+
+
 
     public int getBid() {
         return bid;

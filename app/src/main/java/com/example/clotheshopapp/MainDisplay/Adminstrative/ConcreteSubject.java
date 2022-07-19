@@ -1,34 +1,48 @@
 package com.example.clotheshopapp.MainDisplay.Adminstrative;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
 import com.example.clotheshopapp.MainDisplay.MainActivity;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonProduct;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonUser;
 
 import java.util.List;
 
 public class ConcreteSubject extends Subject{
 	//get View Life Cycle Owner
-	MainActivity mainActivity;
+	private LifecycleOwner lifecycleOwner;
 	private static final String TAG = "ConcreteSubject";
+	private  Context context;
+
 	@Override
-	public void doSomeWork(MainActivity mainActivity) {
-		this.mainActivity = mainActivity;
+	public void doSomeWork(LifecycleOwner lifecycleOwner, Context context) {
+		this.lifecycleOwner = lifecycleOwner;
+		this.context = context;
 		System.out.println("doSomeWork() inside ConcreteSubject is invoked.");
 
 		getAllPro();
 		insertSingleProduct();
+		insertSingleUser();
 	}
 
 	public void insertSingleProduct(){
 		ProductData productData = new ProductData("Ali Dinarvand", "43000", "810000");
 		InsertAsyncTask insertAsyncTask = new InsertAsyncTask();
-		insertAsyncTask.execute(productData);
+		//insertAsyncTask.execute(productData);
+	}
+	public void insertSingleUser(){
+
+		UserDataObj userDataObj = new UserDataObj("Mattheo", "Ali.dinarvand1370@gmail.com", "1234asdf","Bild");
+		InsertUserAsyncTask insertUserAsyncTask = new InsertUserAsyncTask();
+		//insertUserAsyncTask.execute(userDataObj);
 	}
 
 
@@ -36,23 +50,63 @@ public class ConcreteSubject extends Subject{
 
 		@Override
 		protected Void doInBackground(ProductData... productData) {
-			MySingletonProduct.getInstance(mainActivity)
+			MySingletonProduct.getInstance(context)
 					.productDao()
 					.insertProduct(productData[0]);
 			Log.i(TAG, "doInBackground: ");
 			return null;
 		}
 	}
+
+	class InsertUserAsyncTask extends AsyncTask<UserDataObj, Void, Void> {
+
+		@Override
+		protected Void doInBackground(UserDataObj... userData) {
+			MySingletonUser.getInstance(context)
+					.userDao()
+					.insertUser(userData[0]);
+
+			Log.i(TAG, "doInBackground: ");
+			return null;
+		}
+	}
 	public void getAllPro() {
-		LiveData<List<ProductData>> proList = MySingletonProduct.getInstance(mainActivity)
+		LiveData<List<ProductData>> proList = MySingletonProduct.getInstance(context)
 				.productDao()
 				.getAllProducts();
-		proList.observe(mainActivity, new Observer<List<ProductData>>() {
+		proList.observe(lifecycleOwner, new Observer<List<ProductData>>() {
 			@Override
 			public void onChanged(List<ProductData> productData) {
 				Log.i(TAG, "onChanged: " + productData.toString());
+				Log.i(TAG, "onChanged: " + productData.size());
 			}
 		});
+
+
+
+		LiveData<List<UserDataObj>> getUser = MySingletonUser.getInstance(context)
+				.userDao()
+				.getUserAll();
+
+		getUser.observe(lifecycleOwner, new Observer<List<UserDataObj>>() {
+			@Override
+			public void onChanged(List<UserDataObj> userDataObjs) {
+				Log.i(TAG, "user : "+userDataObjs);
+			}
+		});
+
+		LiveData<UserDataObj> getUserName= MySingletonUser.getInstance(context)
+				.userDao()
+				.userFindByEmail("Ali.dinarvand1370@gmail.com");
+
+		getUserName.observe(lifecycleOwner, new Observer<UserDataObj>() {
+			@Override
+			public void onChanged(UserDataObj userDataObj) {
+				Log.i(TAG, "user44: "+userDataObj);
+			}
+		});
+
+
 	}
 
 }

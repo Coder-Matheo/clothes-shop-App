@@ -6,49 +6,41 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
+import com.example.clotheshopapp.MainDisplay.Adminstrative.QueryAuthorizedUser;
 import com.example.clotheshopapp.R;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class SignUpFragment extends Fragment {
+public class AdminFragment extends Fragment {
 
-    CircleImageView signUpImageCircleView;
-    View view;
-    EditText emailSignUpEditText;
-    EditText passwordSignUpEditText;
-    EditText passwordRepeatSignUpEditText;
-    Button createAccountSignUpButton;
-    ImageButton existAccountSignUpButton;
+    private CircleImageView signUpImageCircleView;
+    private View view;
+    private EditText emailSignUpEditText;
+    private EditText passwordSignUpEditText;
+    private EditText passwordRepeatSignUpEditText;
+    private Button createAccountSignUpButton;
+    private Button existAccountSignUpButton;
     private static final String TAG = "SignUpFragment";
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.sign_up_fragment, container, false);
+        view = inflater.inflate(R.layout.admin_fragment, container, false);
         signUpImageCircleView = view.findViewById(R.id.signup_image_view);
 
         setElementUI(view);
@@ -58,9 +50,17 @@ public class SignUpFragment extends Fragment {
         createAccountSignUpButton = view.findViewById(R.id.createAccountSignUpButton);
         existAccountSignUpButton = view.findViewById(R.id.existAccountSignUpButton);
 
-        emailSignUpEditText.addTextChangedListener(new GenericTextWatcher(emailSignUpEditText, createAccountSignUpButton));
-        passwordSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordSignUpEditText, createAccountSignUpButton));
-        passwordRepeatSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordRepeatSignUpEditText, createAccountSignUpButton));
+        emailSignUpEditText.addTextChangedListener(new GenericTextWatcher(emailSignUpEditText, createAccountSignUpButton, getViewLifecycleOwner()));
+        passwordSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordSignUpEditText, createAccountSignUpButton, getViewLifecycleOwner()));
+        passwordRepeatSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordRepeatSignUpEditText, createAccountSignUpButton, getViewLifecycleOwner()));
+        emailSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordRepeatSignUpEditText, existAccountSignUpButton, getViewLifecycleOwner()));
+
+
+        //decided System is Admin or normal User, then can to Upload new Product
+        QueryAuthorizedUser queryAuthorizedUser = new QueryAuthorizedUser(getViewLifecycleOwner(), "Admin",getContext());
+
+
+
 
         setAddImageSignUp();
 
@@ -68,12 +68,7 @@ public class SignUpFragment extends Fragment {
     }
 
     private void setElementUI(View view) {
-
-
         setEmailValidation();
-
-
-
     }
 
     private void setEmailValidation() {
@@ -102,14 +97,7 @@ public class SignUpFragment extends Fragment {
         });*/
     }
 
-    private void setJumpToExistAccount() {
-        Log.i(TAG, "setJumpExistAccount: ");
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout_logging, new LoginFragment());
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
+
 
 
     private void setAddImageSignUp() {
