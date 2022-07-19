@@ -41,9 +41,16 @@ public class AdminFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.admin_fragment, container, false);
-        signUpImageCircleView = view.findViewById(R.id.signup_image_view);
 
         setElementUI(view);
+        //decided System is Admin or normal User, then can to Upload new Product
+        QueryAuthorizedUser queryAuthorizedUser = new QueryAuthorizedUser(getViewLifecycleOwner(), "Admin",getContext());
+        setAddImageSignUp();
+        return view;
+    }
+
+    private void setElementUI(View view) {
+        signUpImageCircleView = view.findViewById(R.id.signup_image_view);
         emailSignUpEditText = view.findViewById(R.id.emailSignUpEditText);
         passwordSignUpEditText = view.findViewById(R.id.passwordSignUpEditText);
         passwordRepeatSignUpEditText = view.findViewById(R.id.passwordRepeatSignUpEditText);
@@ -55,26 +62,8 @@ public class AdminFragment extends Fragment {
         passwordRepeatSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordRepeatSignUpEditText, createAccountSignUpButton, getViewLifecycleOwner()));
         emailSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordRepeatSignUpEditText, existAccountSignUpButton, getViewLifecycleOwner()));
 
-
-        //decided System is Admin or normal User, then can to Upload new Product
-        QueryAuthorizedUser queryAuthorizedUser = new QueryAuthorizedUser(getViewLifecycleOwner(), "Admin",getContext());
-
-
-
-
-        setAddImageSignUp();
-
-        return view;
     }
 
-    private void setElementUI(View view) {
-        setEmailValidation();
-    }
-
-    private void setEmailValidation() {
-
-        //setEmailPasswordProcessElementUI();
-    }
 
 
 

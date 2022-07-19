@@ -26,7 +26,7 @@ public class ConcreteSubject extends Subject{
 	public void doSomeWork(LifecycleOwner lifecycleOwner, Context context) {
 		this.lifecycleOwner = lifecycleOwner;
 		this.context = context;
-		System.out.println("doSomeWork() inside ConcreteSubject is invoked.");
+		Log.i(TAG,"doSomeWork() inside ConcreteSubject is invoked.");
 
 		getAllPro();
 		insertSingleProduct();
@@ -53,7 +53,6 @@ public class ConcreteSubject extends Subject{
 			MySingletonProduct.getInstance(context)
 					.productDao()
 					.insertProduct(productData[0]);
-			Log.i(TAG, "doInBackground: ");
 			return null;
 		}
 	}
@@ -65,8 +64,6 @@ public class ConcreteSubject extends Subject{
 			MySingletonUser.getInstance(context)
 					.userDao()
 					.insertUser(userData[0]);
-
-			Log.i(TAG, "doInBackground: ");
 			return null;
 		}
 	}
@@ -81,32 +78,6 @@ public class ConcreteSubject extends Subject{
 				Log.i(TAG, "onChanged: " + productData.size());
 			}
 		});
-
-
-
-		LiveData<List<UserDataObj>> getUser = MySingletonUser.getInstance(context)
-				.userDao()
-				.getUserAll();
-
-		getUser.observe(lifecycleOwner, new Observer<List<UserDataObj>>() {
-			@Override
-			public void onChanged(List<UserDataObj> userDataObjs) {
-				Log.i(TAG, "user : "+userDataObjs);
-			}
-		});
-
-		LiveData<UserDataObj> getUserName= MySingletonUser.getInstance(context)
-				.userDao()
-				.userFindByEmail("Ali.dinarvand1370@gmail.com");
-
-		getUserName.observe(lifecycleOwner, new Observer<UserDataObj>() {
-			@Override
-			public void onChanged(UserDataObj userDataObj) {
-				Log.i(TAG, "user44: "+userDataObj);
-			}
-		});
-
-
 	}
 
 }

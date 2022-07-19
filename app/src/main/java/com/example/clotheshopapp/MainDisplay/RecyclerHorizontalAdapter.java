@@ -18,23 +18,20 @@ import java.util.List;
 
 public class RecyclerHorizontalAdapter extends RecyclerView.Adapter<RecyclerHorizontalAdapter.ViewHolder> {
     private static final String TAG = "RecyclerHorizontalAdapt";
-    Context context;
-    List<String> titleText;
+    private Context context;
+    private List<String> titleText;
+    private View view;
     int selected_position = 0; // You have to set this globally in the Adapter class
-
 
     public RecyclerHorizontalAdapter(Context context, List<String> titleText) {
         this.context = context;
         this.titleText = titleText;
-
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view ;
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main_test, parent, false);
-
         return new ViewHolder(view);
     }
 

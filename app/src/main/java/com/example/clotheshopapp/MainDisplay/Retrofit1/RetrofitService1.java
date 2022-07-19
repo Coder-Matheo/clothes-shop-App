@@ -30,10 +30,6 @@ public class RetrofitService1 {
         return retrofit;
     }
 
-
-
-
-
     /*public static Retrofit getRetrofit() {
         if (retrofit == null){
             synchronized (RetrofitService1.class){
