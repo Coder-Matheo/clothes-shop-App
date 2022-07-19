@@ -22,6 +22,7 @@ public class ConcreteSubject extends Subject{
 	private static final String TAG = "ConcreteSubject";
 	private  Context context;
 
+	//
 	@Override
 	public void doSomeWork(LifecycleOwner lifecycleOwner, Context context) {
 		this.lifecycleOwner = lifecycleOwner;
