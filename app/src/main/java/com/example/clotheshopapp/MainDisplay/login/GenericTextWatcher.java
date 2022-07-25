@@ -7,25 +7,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
+import com.example.clotheshopapp.MainDisplay.MainActivity;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonUser;
 import com.example.clotheshopapp.R;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 class GenericTextWatcher implements TextWatcher {
-    HashMap<String, String> setin;
     private static final String TAG = "GenericTextWatcher";
     private TextWatcherHelper textWatcherHelper;
     private LifecycleOwner lifecycleOwner;
@@ -34,11 +29,12 @@ class GenericTextWatcher implements TextWatcher {
     Button inputButton;
 
 
-    GenericTextWatcher(View view,Button inputButton,LifecycleOwner lifecycleOwner){
+    GenericTextWatcher(View view,Button inputButton,LifecycleOwner lifecycleOwner, Context context){
         textWatcherHelper = new TextWatcherHelper(context, lifecycleOwner);
         this.lifecycleOwner = lifecycleOwner;
         this.view = view;
         this.inputButton = inputButton;
+        this.context = context;
     }
 
 
@@ -54,26 +50,26 @@ class GenericTextWatcher implements TextWatcher {
     String text;
     @Override
     public void afterTextChanged(Editable editable) {
-        setin = new HashMap<>();
         text = editable.toString();
 
         switch (this.view.getId()){
             case R.id.emailLogInEditText:
                 if (textWatcherHelper.validationEmail(text)){
                     Log.i(TAG, "email verified true: "+ text);
-                    setin.put("Email", text);
+                    //textWatcherHelper.verifyEmailAsAdmin(text);
+
                 }
                 break;
             case R.id.passwordLogInEditText:
                 if (textWatcherHelper.verifyStrongPassword(text)){
                     Log.i(TAG, "Password Verified true: "+ text);
-                    setin.put("Pass", text);
+
                 }
                 break;
             case R.id.emailSignUpEditText:
                 if (textWatcherHelper.validationEmail(text)){
                     Log.i(TAG, "email verified true: "+ text);
-                    textWatcherHelper.setFragmentManagerExistAccount();
+
                 }
                 break;
             case R.id.passwordSignUpEditText:
@@ -95,7 +91,6 @@ class GenericTextWatcher implements TextWatcher {
                     switch (view.getId()){
                         case R.id.logInButton:
                             try{
-                                Log.i(TAG, "onClick: "+setin);
                                 Log.i(TAG, "Log In Button");
 
                             }catch (Exception e){
@@ -107,11 +102,6 @@ class GenericTextWatcher implements TextWatcher {
                             break;
                         case R.id.existAccountSignUpButton:
                             Log.i(TAG, "existAccountSignUpButton: ");
-
-
-
-
-
                             break;
                     }
                 }catch (Exception e){
@@ -120,4 +110,8 @@ class GenericTextWatcher implements TextWatcher {
             }
         });
     }
+
+
 }
+
+

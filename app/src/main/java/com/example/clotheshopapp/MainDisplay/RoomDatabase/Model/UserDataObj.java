@@ -2,11 +2,12 @@ package com.example.clotheshopapp.MainDisplay.RoomDatabase.Model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.util.Arrays;
 
-@Entity
+@Entity(indices = {@Index(value ={"email"}, unique = true)})
 public class UserDataObj {
 
     @PrimaryKey(autoGenerate = true)

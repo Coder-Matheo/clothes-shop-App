@@ -2,6 +2,7 @@ package com.example.clotheshopapp.MainDisplay.Adminstrative;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.service.autofill.UserData;
 import android.util.Log;
 
 import androidx.lifecycle.LifecycleOwner;
@@ -30,20 +31,22 @@ public class ConcreteSubject extends Subject{
 		Log.i(TAG,"doSomeWork() inside ConcreteSubject is invoked.");
 
 		getAllPro();
-		insertSingleProduct();
-		insertSingleUser();
+		getAllUser();
+		//insertSingleProduct();
+		//insertSingleUser();
 	}
 
 	public void insertSingleProduct(){
-		ProductData productData = new ProductData("Ali Dinarvand", "43000", "810000");
+		ProductData productData = new ProductData("Ali Dinars", "430300", "8100400");
 		InsertAsyncTask insertAsyncTask = new InsertAsyncTask();
-		//insertAsyncTask.execute(productData);
+		insertAsyncTask.execute(productData);
 	}
 	public void insertSingleUser(){
 
-		UserDataObj userDataObj = new UserDataObj("Mattheo", "Ali.dinarvand1370@gmail.com", "1234asdf","Bild");
+		UserDataObj userDataObj = new UserDataObj("Rafael3", "ALI.DINARVAND@GMAIL1234.COM", "1234aside","Build");
 		InsertUserAsyncTask insertUserAsyncTask = new InsertUserAsyncTask();
-		//insertUserAsyncTask.execute(userDataObj);
+		insertUserAsyncTask.execute(userDataObj);
+		Log.i(TAG, "insertSingleUser: new User created");
 	}
 
 
@@ -77,6 +80,19 @@ public class ConcreteSubject extends Subject{
 			public void onChanged(List<ProductData> productData) {
 				Log.i(TAG, "onChanged: " + productData.toString());
 				Log.i(TAG, "onChanged: " + productData.size());
+			}
+		});
+	}
+
+	public void getAllUser(){
+		LiveData<List<UserDataObj>> userList = MySingletonUser.getInstance(context)
+				.userDao()
+				.getUserAll();
+
+		userList.observe(lifecycleOwner, new Observer<List<UserDataObj>>() {
+			@Override
+			public void onChanged(List<UserDataObj> userDataObjs) {
+				Log.i(TAG, "getAllUser: "+userDataObjs);
 			}
 		});
 	}

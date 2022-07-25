@@ -57,10 +57,10 @@ public class AdminFragment extends Fragment {
         createAccountSignUpButton = view.findViewById(R.id.createAccountSignUpButton);
         existAccountSignUpButton = view.findViewById(R.id.existAccountSignUpButton);
 
-        emailSignUpEditText.addTextChangedListener(new GenericTextWatcher(emailSignUpEditText, createAccountSignUpButton, getViewLifecycleOwner()));
-        passwordSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordSignUpEditText, createAccountSignUpButton, getViewLifecycleOwner()));
-        passwordRepeatSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordRepeatSignUpEditText, createAccountSignUpButton, getViewLifecycleOwner()));
-        emailSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordRepeatSignUpEditText, existAccountSignUpButton, getViewLifecycleOwner()));
+        emailSignUpEditText.addTextChangedListener(new GenericTextWatcher(emailSignUpEditText, createAccountSignUpButton, getViewLifecycleOwner(), getContext()));
+        passwordSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordSignUpEditText, createAccountSignUpButton, getViewLifecycleOwner(), getContext()));
+        passwordRepeatSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordRepeatSignUpEditText, createAccountSignUpButton, getViewLifecycleOwner(), getContext()));
+        emailSignUpEditText.addTextChangedListener(new GenericTextWatcher(passwordRepeatSignUpEditText, existAccountSignUpButton, getViewLifecycleOwner(), getContext()));
 
     }
 
@@ -87,8 +87,6 @@ public class AdminFragment extends Fragment {
     }
 
 
-
-
     private void setAddImageSignUp() {
 
         signUpImageCircleView.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +102,6 @@ public class AdminFragment extends Fragment {
                 i.putExtra("outputY", 356);
 
                 try {
-
                     i.putExtra("return-data", true);
                     startActivityForResult(
                             Intent.createChooser(i, "Select Picture"), 0);

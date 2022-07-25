@@ -20,6 +20,8 @@ import android.widget.TextView;
 import com.example.clotheshopapp.MainDisplay.Account.AccountFragment;
 import com.example.clotheshopapp.MainDisplay.Adminstrative.QueryAuthorizedUser;
 import com.example.clotheshopapp.MainDisplay.Detail.DetailProductFragment;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonUser;
 import com.example.clotheshopapp.MainDisplay.login.LoggingActivity;
@@ -29,6 +31,7 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -62,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
         setOptionsMenuSelect();
         setUsernameOfToolbar();
         setBottomNavigationView();
+
+
+
+
+
+
 
 
     }

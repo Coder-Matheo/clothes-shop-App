@@ -19,6 +19,6 @@ public interface UserDao {
     LiveData<List<UserDataObj>> getUserAll();
 
     @Query("SELECT * FROM userdataobj WHERE email LIKE :emailInput Limit 1")
-    LiveData<UserDataObj> userFindByEmail(String emailInput);
+    LiveData<List<UserDataObj>> userFindByEmail(String emailInput);
 
 }
