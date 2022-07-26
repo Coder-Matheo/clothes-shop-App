@@ -67,12 +67,6 @@ public class MainActivity extends AppCompatActivity {
         setBottomNavigationView();
 
 
-
-
-
-
-
-
     }
 
     private void setUsernameOfToolbar() {

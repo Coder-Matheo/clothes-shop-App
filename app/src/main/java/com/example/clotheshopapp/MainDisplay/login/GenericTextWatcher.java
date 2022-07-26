@@ -1,5 +1,6 @@
 package com.example.clotheshopapp.MainDisplay.login;
 
+import android.app.Application;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,11 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
 import com.example.clotheshopapp.MainDisplay.MainActivity;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonUser;
 import com.example.clotheshopapp.R;
@@ -20,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-class GenericTextWatcher implements TextWatcher {
+class GenericTextWatcher extends Application implements TextWatcher{
     private static final String TAG = "GenericTextWatcher";
     private TextWatcherHelper textWatcherHelper;
     private LifecycleOwner lifecycleOwner;
@@ -29,15 +32,15 @@ class GenericTextWatcher implements TextWatcher {
     Button inputButton;
 
 
+
     GenericTextWatcher(View view,Button inputButton,LifecycleOwner lifecycleOwner, Context context){
+
         textWatcherHelper = new TextWatcherHelper(context, lifecycleOwner);
         this.lifecycleOwner = lifecycleOwner;
         this.view = view;
         this.inputButton = inputButton;
         this.context = context;
     }
-
-
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
     }

@@ -13,6 +13,8 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
@@ -22,17 +24,23 @@ import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonUser;
 import com.example.clotheshopapp.R;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LoginFragment extends Fragment {
 
-    EditText emailLogInEditText;
-    EditText passwordLogInEditText;
-    Button logInButton;
-    Button createAccountLogInButton;
-    DataViewModel dataViewModel;
+    private EditText emailLogInEditText;
+    private EditText passwordLogInEditText;
+    private Button logInButton;
+    private Button createAccountLogInButton;
+    private DataViewModel dataViewModel;
     private static final String TAG = "LoginFragment";
-    View view;
+    private TextWatcherHelper textWatcherHelper;
+    private View view;
 
     @Nullable
     @Override
@@ -43,30 +51,21 @@ public class LoginFragment extends Fragment {
         logInButton = view.findViewById(R.id.logInButton);
         createAccountLogInButton = view.findViewById(R.id.createAccountLogInButton);
 
-        passwordLogInEditText.addTextChangedListener(new GenericTextWatcher(passwordLogInEditText, logInButton, getViewLifecycleOwner(),getContext()));
-        emailLogInEditText.addTextChangedListener(new GenericTextWatcher(emailLogInEditText, logInButton, getViewLifecycleOwner(),getContext()));
+        //passwordLogInEditText.addTextChangedListener(new GenericTextWatcher(passwordLogInEditText, logInButton, getViewLifecycleOwner(),getContext()));
+        //emailLogInEditText.addTextChangedListener(new GenericTextWatcher(emailLogInEditText, logInButton, getViewLifecycleOwner(),getContext()));
 
         dataViewModel = new DataViewModel(getActivity().getApplication());
+        textWatcherHelper = new TextWatcherHelper(getContext(),getViewLifecycleOwner());
 
 
 
-        UserDataObj userDataObj = new UserDataObj("New User Test","ALI.DINARVAND@GMAIL.COM","1234asdf","BILD");
-        dataViewModel.insertUserQuery(userDataObj);
 
-        /*LiveData<List<UserDataObj>> get1 = dataViewModel.getAllUser();
-        get1.observe(getViewLifecycleOwner(), new Observer<List<UserDataObj>>() {
-            @Override
-            public void onChanged(List<UserDataObj> userDataObjs) {
-                Log.i(TAG, "onChanged: "+userDataObjs);
-            }
-        });*/
-
-
+        verifyEmail(emailLogInEditText, passwordLogInEditText);
 
         return view;
     }
 
-    private void verifyEmail(EditText emailLogInEditText) {
+    private void verifyEmail(EditText emailLogInEditText, EditText passwordLogInEditText) {
         emailLogInEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -80,42 +79,33 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                String email = String.valueOf(editable);
+                String email = String.valueOf(editable).toUpperCase(Locale.ROOT);
                 LiveData<List<UserDataObj>> get = dataViewModel.userFindByEmailQuery(email);
                 get.observe(getViewLifecycleOwner(), new Observer<List<UserDataObj>>() {
                     @Override
                     public void onChanged(List<UserDataObj> userDataObjs) {
-                        Log.i(TAG, "onChanged: "+userDataObjs.size());
-                        Log.i(TAG, "onChanged: "+userDataObjs);
-                    }
-                });
-
-
-
-
-                LiveData<List<UserDataObj>> getUserName = MySingletonUser.getInstance(view.getContext())
-                        .userDao()
-                        .userFindByEmail(email);
-
-                getUserName.observe(getViewLifecycleOwner(), new Observer<List<UserDataObj>>() {
-                    @Override
-                    public void onChanged(List<UserDataObj> userDataObjs) {
-                        try{
-
-                            Log.i(TAG, "You are Admin, you can access Data");
-                            Log.i(TAG, "user449: "+userDataObjs);
-
-                    /*FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frameLayout_logging, new LoginFragment());
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();*/
-
-                        }catch (Exception e){
-                            e.printStackTrace();
+                        Log.i(TAG, "onChanged333: "+userDataObjs);
+                        if (userDataObjs.size() != 0){
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.frameLayout_logging, new AdminFragment());
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
+                        }else {
+                            try {
+                                if (textWatcherHelper.validationEmail(emailLogInEditText.getText().toString().toUpperCase(Locale.ROOT))){
+                                    UserDataObj userDataObj = new UserDataObj("New User Test",
+                                            emailLogInEditText.getText().toString().toUpperCase(Locale.ROOT),
+                                            "1234asdf" ,"BILD");
+                                    dataViewModel.insertUserQuery(userDataObj);
+                                }
+                            }catch (Exception e){
+                                Log.e(TAG, "Error or exists user");
+                            }
                         }
                     }
                 });
+
             }
         });
     }

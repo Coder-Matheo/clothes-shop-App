@@ -21,7 +21,9 @@ public abstract class MySingletonUser extends RoomDatabase {
                 if (INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             MySingletonUser.class, USER_DB)
-                            .fallbackToDestructiveMigration().build();
+                            .fallbackToDestructiveMigration()
+                            .allowMainThreadQueries()
+                            .build();
                 }
             }
         }

@@ -1,14 +1,23 @@
 package com.example.clotheshopapp.MainDisplay.login;
 
+import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonUser;
 
@@ -17,14 +26,20 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TextWatcherHelper {
+public class TextWatcherHelper extends Fragment {
     private static final String TAG = "TextWatcherHelper";
     private Context context;
     private LifecycleOwner lifecycleOwner;
+
     public TextWatcherHelper(Context context, LifecycleOwner lifecycleOwner) {
         this.context = context;
         this.lifecycleOwner = lifecycleOwner;
+
+
     }
+
+
+
 
     public void verifyEmailAsAdmin(String emailInput) {
 
