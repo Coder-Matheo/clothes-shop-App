@@ -45,39 +45,38 @@
 
 
             <EditText
-                android:id="@+id/emailSignUpEditText"
+                android:id="@+id/productNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/background_pass_edittext"
-                android:hint="Email"
+                android:hint="@string/productName"
                 android:paddingLeft="20dp"
                 android:textAllCaps="false"
                 android:textColorHint="#444444"
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/passwordSignUpEditText"
+                android:id="@+id/productPriceEditText"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/background_pass_edittext"
-                android:hint="Password"
+                android:hint="@string/productPrice"
                 android:paddingLeft="20dp"
                 android:textAllCaps="false"
-                android:inputType="textPassword"
                 android:textColorHint="#444444"
-                android:textSize="22sp"
-                android:layout_marginBottom="10dp" />
+                android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/passwordRepeatSignUpEditText"
+                android:id="@+id/dateOffEditText"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@drawable/background_pass_edittext"
-                android:hint="Repeat Password"
-                android:paddingLeft="20dp"
-                android:textAllCaps="false"
                 android:inputType="textPassword"
+                android:paddingLeft="20dp"
+                android:hint="@string/dataOff"
+                android:textAllCaps="false"
                 android:textColorHint="#444444"
                 android:textSize="22sp" />
         </LinearLayout>
@@ -92,11 +91,11 @@
 
 
             <Button
-                android:id="@+id/createAccountSignUpButton"
+                android:id="@+id/releaseNewProductButton"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/background_create_account_button"
-                android:text="Create an Account"
+                android:text="@string/releaseProduct"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"

@@ -8,19 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 
-import com.example.clotheshopapp.MainDisplay.MainActivity;
-import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
-import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
-import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonUser;
 import com.example.clotheshopapp.R;
-
-import java.util.HashMap;
-import java.util.List;
 
 
 class GenericTextWatcher extends Application implements TextWatcher{
@@ -69,18 +59,18 @@ class GenericTextWatcher extends Application implements TextWatcher{
 
                 }
                 break;
-            case R.id.emailSignUpEditText:
+            case R.id.productNameEditText:
                 if (textWatcherHelper.validationEmail(text)){
                     Log.i(TAG, "email verified true: "+ text);
 
                 }
                 break;
-            case R.id.passwordSignUpEditText:
+            case R.id.productPriceEditText:
                 if (textWatcherHelper.verifyStrongPassword(text)){
                     Log.i(TAG, "Password Strong Verified true: "+ text);
                 }
                 break;
-            case R.id.passwordRepeatSignUpEditText:
+            case R.id.dateOffEditText:
                 Log.i(TAG, "passwordRepeatSignUpEditText: "+text);
                 break;
 
@@ -100,7 +90,7 @@ class GenericTextWatcher extends Application implements TextWatcher{
                                 e.printStackTrace();
                             }
                             break;
-                        case R.id.createAccountSignUpButton:
+                        case R.id.releaseNewProductButton:
                             Log.i(TAG, "Create new account");
                             break;
                         case R.id.existAccountSignUpButton:

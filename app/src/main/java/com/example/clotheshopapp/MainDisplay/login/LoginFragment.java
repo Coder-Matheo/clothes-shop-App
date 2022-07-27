@@ -80,11 +80,11 @@ public class LoginFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 String email = String.valueOf(editable).toUpperCase(Locale.ROOT);
+
                 LiveData<List<UserDataObj>> get = dataViewModel.userFindByEmailQuery(email);
                 get.observe(getViewLifecycleOwner(), new Observer<List<UserDataObj>>() {
                     @Override
                     public void onChanged(List<UserDataObj> userDataObjs) {
-                        Log.i(TAG, "onChanged333: "+userDataObjs);
                         if (userDataObjs.size() != 0){
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -93,11 +93,12 @@ public class LoginFragment extends Fragment {
                             fragmentTransaction.commit();
                         }else {
                             try {
-                                if (textWatcherHelper.validationEmail(emailLogInEditText.getText().toString().toUpperCase(Locale.ROOT))){
-                                    UserDataObj userDataObj = new UserDataObj("New User Test",
-                                            emailLogInEditText.getText().toString().toUpperCase(Locale.ROOT),
-                                            "1234asdf" ,"BILD");
-                                    dataViewModel.insertUserQuery(userDataObj);
+                               if (textWatcherHelper.validationEmail(emailLogInEditText.getText().toString().toUpperCase(Locale.ROOT))){
+                                   Log.i(TAG, "password: "+ passwordLogInEditText.getText().toString());
+                                   UserDataObj userDataObj = new UserDataObj("New User Test",
+                                           emailLogInEditText.getText().toString().toUpperCase(Locale.ROOT),
+                                           "1234asdf" ,"BILD");
+                                   dataViewModel.insertUserQuery(userDataObj);
                                 }
                             }catch (Exception e){
                                 Log.e(TAG, "Error or exists user");

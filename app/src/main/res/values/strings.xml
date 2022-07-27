@@ -12,4 +12,8 @@
     <string name="warenkorbStr">Warenkorb</string>
     <string name="AngesehenStr">Angesehen</string>
     <string name="endet_in">endet in</string>
+    <string name="productName">Product Name</string>
+    <string name="productPrice">Product Price</string>
+    <string name="dataOff">Data Off</string>
+  <string name="releaseProduct">Release Product</string>
 </resources>

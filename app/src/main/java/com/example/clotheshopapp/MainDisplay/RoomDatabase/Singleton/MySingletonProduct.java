@@ -20,7 +20,10 @@ public abstract class MySingletonProduct extends RoomDatabase {
             synchronized (MySingletonProduct.class){
                 if (INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            MySingletonProduct.class, PRODUCT_DB).build();
+                            MySingletonProduct.class, PRODUCT_DB)
+                            .fallbackToDestructiveMigration()
+                            .allowMainThreadQueries()
+                            .build();
                 }
             }
         }
