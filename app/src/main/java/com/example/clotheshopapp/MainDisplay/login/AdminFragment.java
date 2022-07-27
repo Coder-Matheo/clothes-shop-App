@@ -2,6 +2,7 @@ package com.example.clotheshopapp.MainDisplay.login;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.database.CursorWindow;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -27,6 +28,8 @@ import com.example.clotheshopapp.R;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.nio.ByteBuffer;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -86,18 +89,6 @@ public class AdminFragment extends Fragment {
         String password = productPriceEditText.getText().toString().trim();
         String repeatPassword = dateOffEditText.getText().toString().trim();
 
-        /*createAccountSignUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (password == repeatPassword){
-                    Log.i(TAG, "onClick: ");
-                }else {
-                    Log.i(TAG, "onClick: if Account Exist");
-                    setJumpToExistAccount();
-                }
-            }
-        });*/
     }
 
 
@@ -136,26 +127,30 @@ public class AdminFragment extends Fragment {
             InputStream inputStream = getActivity().getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
             signUpImageCircleView.setImageBitmap(bitmap);
-            getUU(bitmap);
+
+
+
+
+
+           // getUU(bytes);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-
-
-
-
     }
 
-    private void getUU(Bitmap bitmap) {
+   /* private void getUU(byte[] bitmap) {
+        Log.i(TAG, "getUU: "+bitmap.length);
         releaseNewProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!TextUtils.isEmpty(productPriceEditText.getText()) && !TextUtils.isEmpty(productNameEditText.getText())
-                    && !TextUtils.isEmpty(dateOffEditText.getText())){
+                if (!TextUtils.isEmpty(productPriceEditText.getText().toString().trim())
+                        && !TextUtils.isEmpty(productNameEditText.getText().toString().trim())
+                        && !TextUtils.isEmpty(dateOffEditText.getText().toString().trim())){
                     try {
                         ProductData productData = new ProductData(String.valueOf(productNameEditText.getText()),
-                                String.valueOf(productNameEditText.getText()),String.valueOf(dateOffEditText.getText()));
+                                String.valueOf(productNameEditText.getText()),String.valueOf(dateOffEditText.getText())
+                        , bitmap);
 
                         dataViewModel.insertProductQuery(productData);
 
@@ -180,5 +175,5 @@ public class AdminFragment extends Fragment {
 
             }
         });
-    }
+    }*/
 }

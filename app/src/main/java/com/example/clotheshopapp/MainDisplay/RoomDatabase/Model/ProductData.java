@@ -27,6 +27,7 @@ public class ProductData {
         this.productName = productName;
         this.productPrice = productPrice;
         this.product_dateOff = product_dateOff;
+
     }
 
     public ProductData() {

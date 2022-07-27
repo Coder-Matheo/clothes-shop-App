@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clotheshopapp.MainDisplay.RecyclerViewAdapter;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.ManipulateValue.ManipulateValueUser;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonProduct;
@@ -37,11 +38,14 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
     private ArrayList<byte[]> lstProductImg = new ArrayList<>();
     private ArrayList<String> lstProductName = new ArrayList<>();
     private View view;
+    private DataViewModel dataViewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_detail_product, container, false);
+
+        dataViewModel = new DataViewModel(getActivity().getApplication());
 
         setGetDBServerValueAndSetRecyclerView(view);
 
@@ -57,9 +61,8 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
 
         //manipulateValueUser.findUserWithNamePass("Matheo", "Matheo1370?!");
 
-        LiveData<List<ProductData>> proList = MySingletonProduct.getInstance(getContext())
-                .productDao()
-                .getAllProducts();
+        LiveData<List<ProductData>> proList = dataViewModel.getAllProductQuery();
+
         proList.observe(getViewLifecycleOwner(), new Observer<List<ProductData>>() {
             @Override
             public void onChanged(List<ProductData> productData) {
@@ -79,19 +82,6 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
                 recyclerViewAdapter.notifyDataSetChanged();
             }
         });
-
-        //Set span size
-        /*gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                if ((position+1) % 5 * 2 == 0){
-                    return 2;
-                }else {
-                    return 1;
-                }
-            }
-        });*/
-
 
         //Initial Retrofit
         //RetrofitService1 retrofitService1 = new RetrofitService1();
