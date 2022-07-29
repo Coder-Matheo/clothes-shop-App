@@ -35,7 +35,7 @@ public class ManipulateValueProduct {
             public Boolean call() throws Exception {
                 MySingletonProduct.getInstance(context)
                         .productDao()
-                        .insertProduct(new ProductData(pro_name,pro_price,pro_dataOff));
+                        .insertProduct(new ProductData(pro_name,pro_price,pro_dataOff, pro_image));
 
                 return true;
             }

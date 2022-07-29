@@ -47,6 +47,7 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
 
         dataViewModel = new DataViewModel(getActivity().getApplication());
 
+
         setGetDBServerValueAndSetRecyclerView(view);
 
         return view;
@@ -73,7 +74,7 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
                     lstProductDataOff.add(productData.get(i).getProduct_dateOff());
                     lstProductPrice.add(productData.get(i).getProductPrice());
                 }
-                recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstProductName,lstProductPrice,
+                recyclerViewAdapter = new RecyclerViewAdapter(getViewLifecycleOwner(), lstProductName,lstProductPrice,
                         lstProductDataOff,lstProductImg, DetailProductFragment.this::onClickListenerInterface);
 
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);

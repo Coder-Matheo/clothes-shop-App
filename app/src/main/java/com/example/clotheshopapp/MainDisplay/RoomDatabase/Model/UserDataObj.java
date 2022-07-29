@@ -27,11 +27,11 @@ public class UserDataObj {
     public UserDataObj() {
     }
 
-    public UserDataObj(String userName, String email, String password, String profilePhoto) {
+    public UserDataObj(String userName, String email, String password, byte[] imgProfile) {
         this.userName = userName;
         this.email = email;
         this.password = password;
-        this.profilePhoto = profilePhoto;
+        this.imgProfile = imgProfile;
     }
 
     public int getId() {

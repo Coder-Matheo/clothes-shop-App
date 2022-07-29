@@ -22,6 +22,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
 import com.example.clotheshopapp.MainDisplay.Adminstrative.QueryAuthorizedUser;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataConverter;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
 import com.example.clotheshopapp.R;
@@ -78,20 +79,6 @@ public class AdminFragment extends Fragment {
 
     }
 
-
-
-
-
-
-
-    private void setEmailPasswordProcessElementUI() {
-        String email = productNameEditText.getText().toString().trim();
-        String password = productPriceEditText.getText().toString().trim();
-        String repeatPassword = dateOffEditText.getText().toString().trim();
-
-    }
-
-
     private void setAddImageSignUp() {
 
         signUpImageCircleView.setOnClickListener(new View.OnClickListener() {
@@ -121,26 +108,40 @@ public class AdminFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Uri uri = data.getData();
-
         try {
+            Uri uri = data.getData();
+
             InputStream inputStream = getActivity().getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+
+
+            final int maxSize = 768;
+            int outWidth;
+            int outHeight;
+            int inWidth = bitmap.getWidth();
+            int inHeight = bitmap.getHeight();
+            if (inWidth > inHeight) {
+                outWidth = maxSize;
+                outHeight = (inHeight * maxSize) / inWidth;
+            } else {
+                outHeight = maxSize;
+                outWidth = (inWidth * maxSize) / inHeight;
+            }
+
+            bitmap = Bitmap.createScaledBitmap(bitmap, outWidth, outHeight,
+                    false);
+
             signUpImageCircleView.setImageBitmap(bitmap);
 
-
-
-
-
-           // getUU(bytes);
+            getUU(bitmap);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
     }
 
-   /* private void getUU(byte[] bitmap) {
-        Log.i(TAG, "getUU: "+bitmap.length);
+    private void getUU(Bitmap bitmap) {
+
         releaseNewProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -148,32 +149,23 @@ public class AdminFragment extends Fragment {
                         && !TextUtils.isEmpty(productNameEditText.getText().toString().trim())
                         && !TextUtils.isEmpty(dateOffEditText.getText().toString().trim())){
                     try {
+                        DataConverter dataConverter = new DataConverter();
                         ProductData productData = new ProductData(String.valueOf(productNameEditText.getText()),
-                                String.valueOf(productNameEditText.getText()),String.valueOf(dateOffEditText.getText())
-                        , bitmap);
+                                String.valueOf(productPriceEditText.getText()),String.valueOf(dateOffEditText.getText())
+                                , dataConverter.convertImage2ByteArray(bitmap)
+                        );
 
                         dataViewModel.insertProductQuery(productData);
 
                     }catch (Exception e){
                         e.printStackTrace();
-                    }finally {
-                        LiveData<List<ProductData>> getPro = dataViewModel.getAllProductQuery();
-                        getPro.observe(getViewLifecycleOwner(), new Observer<List<ProductData>>() {
-                            @Override
-                            public void onChanged(List<ProductData> productData) {
-                                Log.i(TAG, "onChanged: "+productData);
-                            }
-                        });
                     }
 
                     Log.i(TAG, "onClick: created product");
-                    Log.i(TAG, "onClick: "+productNameEditText.getText());
-                    Log.i(TAG, "onClick: "+productPriceEditText.getText());
-                    Log.i(TAG, "onClick: "+dateOffEditText.getText());
-                    Log.i(TAG, "onClick: "+bitmap);
+
                 }
 
             }
         });
-    }*/
+    }
 }

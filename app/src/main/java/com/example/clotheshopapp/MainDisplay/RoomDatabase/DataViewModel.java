@@ -1,7 +1,7 @@
 package com.example.clotheshopapp.MainDisplay.RoomDatabase;
 
 import android.app.Application;
-import android.service.autofill.UserData;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -14,21 +14,23 @@ import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonU
 
 import java.util.List;
 
-
-public class DataViewModel extends AndroidViewModel {
+//extends AndroidViewModel
+public class DataViewModel {
     MySingletonProduct mySingletonProduct;
     MySingletonUser mySingletonUser;
 
-    public DataViewModel(@NonNull Application application) {
-        super(application);
-
-        mySingletonProduct = MySingletonProduct.getInstance(application.getApplicationContext());
-        mySingletonUser = MySingletonUser.getInstance(application.getApplicationContext());
+    public DataViewModel(Context context) {
+        mySingletonProduct = MySingletonProduct.getInstance(context);
+        mySingletonUser = MySingletonUser.getInstance(context);
     }
 
     //Product Query
     public LiveData<List<ProductData>> getAllProductQuery(){
         return mySingletonProduct.productDao().getAllProducts();
+    }
+
+    public void deleteProduct(int product_id){
+        mySingletonProduct.productDao().deleteProductById(product_id);
     }
 
     public void insertProductQuery(ProductData productData){

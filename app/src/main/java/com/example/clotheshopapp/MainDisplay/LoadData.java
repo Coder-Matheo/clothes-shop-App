@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
 import com.example.clotheshopapp.MainDisplay.Retrofit1.RetrofitService1;
 import com.example.clotheshopapp.MainDisplay.Retrofit1.ServerApi;
@@ -37,11 +38,6 @@ public class LoadData extends AppCompatActivity {
         initialListComponent();
 
     }
-
-
-
-
-
 
 
     private void initialListComponent() {

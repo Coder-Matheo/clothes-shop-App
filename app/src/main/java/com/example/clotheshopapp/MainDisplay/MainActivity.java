@@ -3,8 +3,6 @@ package com.example.clotheshopapp.MainDisplay;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -18,12 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.clotheshopapp.MainDisplay.Account.AccountFragment;
-import com.example.clotheshopapp.MainDisplay.Adminstrative.QueryAuthorizedUser;
 import com.example.clotheshopapp.MainDisplay.Detail.DetailProductFragment;
-import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
-import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
-import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
-import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonUser;
 import com.example.clotheshopapp.MainDisplay.login.LoggingActivity;
 import com.example.clotheshopapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,7 +24,6 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -59,14 +51,13 @@ public class MainActivity extends AppCompatActivity {
         topToolbar = findViewById(R.id.topTollBar);
 
 
+
         setRecyclerViewHorizontal();
         setButtonAccountFragment();
         setTabLayout();
         setOptionsMenuSelect();
         setUsernameOfToolbar();
         setBottomNavigationView();
-
-
     }
 
     private void setUsernameOfToolbar() {
@@ -77,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setButtonAccountFragment() {
         accountImageButton = findViewById(R.id.accountImageButton);
+
         accountImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

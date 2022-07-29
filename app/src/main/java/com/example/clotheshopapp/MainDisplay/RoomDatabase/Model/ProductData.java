@@ -2,6 +2,7 @@ package com.example.clotheshopapp.MainDisplay.RoomDatabase.Model;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -23,11 +24,11 @@ public class ProductData {
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB, name = "product_image")
     private byte[] product_image;
 
-    public ProductData(String productName, String productPrice, String product_dateOff) {
+    public ProductData(String productName, String productPrice, String product_dateOff, byte[] product_image) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.product_dateOff = product_dateOff;
-
+        this.product_image = product_image;
     }
 
     public ProductData() {
