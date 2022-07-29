@@ -26,6 +26,7 @@ import androidx.lifecycle.Observer;
 
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataConverter;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
 import com.example.clotheshopapp.R;
 
@@ -67,7 +68,7 @@ public class LoginFragment extends Fragment {
 
 
         verifyEmail(emailLogInEditText, passwordLogInEditText);
-
+        setAddImageSignUp();
         return view;
     }
 
@@ -174,18 +175,50 @@ public class LoginFragment extends Fragment {
     private void setNewUsers(Bitmap bitmap) {
         DataConverter dataConverter = new DataConverter();
         Log.i(TAG, "setNewUsers: "+adminCheckBox.getText());
-        try {
-            if (textWatcherHelper.validationEmail(emailLogInEditText.getText().toString().toUpperCase(Locale.ROOT))){
 
-                UserDataObj userDataObj = new UserDataObj("Admin",
-                        emailLogInEditText.getText().toString().toUpperCase(Locale.ROOT),
-                        passwordLogInEditText.getText().toString().toUpperCase(Locale.ROOT) ,
-                        dataConverter.convertImage2ByteArray(bitmap));
-                dataViewModel.insertUserQuery(userDataObj);
+        logInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    if (textWatcherHelper.validationEmail(emailLogInEditText.getText().toString().toUpperCase(Locale.ROOT))){
+                        String adminString = "";
+                        if (adminCheckBox.isChecked()){
+                            adminString = "Admin";
+                        }else {
+                            adminString = "User";
+                        }
+                        UserDataObj userDataObj = new UserDataObj(adminString,
+                                emailLogInEditText.getText().toString().toUpperCase(Locale.ROOT),
+                                passwordLogInEditText.getText().toString().toUpperCase(Locale.ROOT) ,
+                                dataConverter.convertImage2ByteArray(bitmap));
+                        dataViewModel.insertUserQuery(userDataObj);
+                        Log.i(TAG, "New User Created");
+                    }else {
+                        Log.i(TAG, "New Users: Something wrong");
+                    }
+                }catch (Exception e){
+                    Log.e(TAG, "Error or exists user");
+                }finally {
+                    LiveData<List<UserDataObj>> getPro = dataViewModel.getAllUser();
+                    getPro.observe(getViewLifecycleOwner(), new Observer<List<UserDataObj>>() {
+                        @Override
+                        public void onChanged(List<UserDataObj> userDataObjs) {
+                            for (int i = 0; i < userDataObjs.size(); i++){
+                                Log.i(TAG, "onChanged: "+ userDataObjs.get(i).getUserName());
+                                Log.i(TAG, "onChanged: "+ userDataObjs.get(i).getId());
+                            }
+
+                        }
+
+
+                    });
+                }
+
+
+
             }
-        }catch (Exception e){
-            Log.e(TAG, "Error or exists user");
-        }
+        });
+
     }
 
 
