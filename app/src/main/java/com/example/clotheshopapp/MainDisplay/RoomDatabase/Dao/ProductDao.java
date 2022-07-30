@@ -3,7 +3,6 @@ package com.example.clotheshopapp.MainDisplay.RoomDatabase.Dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -21,6 +20,9 @@ public interface ProductDao {
 
     @Query("DELETE FROM productdata WHERE bid LIKE :product_id")
     void deleteProductById(int product_id);
+
+    @Query("DELETE FROM productdata")
+    void deleteAllProducts();
 
 
 

@@ -13,12 +13,15 @@ import java.util.List;
 public interface UserDao {
 
     @Insert
-    void insertUser(UserDataObj userInput);
+    long insertUser(UserDataObj userInput);
 
     @Query("SELECT * FROM userdataobj")
     LiveData<List<UserDataObj>> getUserAll();
 
     @Query("SELECT * FROM userdataobj WHERE email LIKE :emailInput Limit 1")
     LiveData<List<UserDataObj>> userFindByEmail(String emailInput);
+
+    @Query("UPDATE userdataobj SET userName = 'User' WHERE userName = 'New User Test'")
+    void setUpdateUser();
 
 }

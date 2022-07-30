@@ -3,6 +3,8 @@ package com.example.clotheshopapp.MainDisplay;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -17,6 +19,8 @@ import android.widget.TextView;
 
 import com.example.clotheshopapp.MainDisplay.Account.AccountFragment;
 import com.example.clotheshopapp.MainDisplay.Detail.DetailProductFragment;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
 import com.example.clotheshopapp.MainDisplay.login.LoggingActivity;
 import com.example.clotheshopapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -24,6 +28,7 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -49,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         topToolbar = findViewById(R.id.topTollBar);
-
 
 
         setRecyclerViewHorizontal();

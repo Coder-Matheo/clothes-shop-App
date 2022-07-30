@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ import com.example.clotheshopapp.MainDisplay.Adminstrative.QueryAuthorizedUser;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataConverter;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
+import com.example.clotheshopapp.MainDisplay.SameFeature.AlertWindow;
 import com.example.clotheshopapp.R;
 
 import java.io.FileNotFoundException;
@@ -46,7 +48,7 @@ public class AdminFragment extends Fragment {
     private Button existAccountSignUpButton;
     private static final String TAG = "AdminFragment";
     private DataViewModel dataViewModel;
-
+    private AlertWindow alertWindow;
 
 
     @Nullable
@@ -56,6 +58,7 @@ public class AdminFragment extends Fragment {
         view = inflater.inflate(R.layout.admin_fragment, container, false);
 
         dataViewModel = new DataViewModel(getActivity().getApplication());
+        alertWindow = new AlertWindow(getActivity().getApplicationContext());
         setElementUI(view);
         //decided System is Admin or normal User, then can to Upload new Product
         QueryAuthorizedUser queryAuthorizedUser = new QueryAuthorizedUser(getViewLifecycleOwner(), "Admin",getContext());
@@ -111,6 +114,7 @@ public class AdminFragment extends Fragment {
         try {
             Uri uri = data.getData();
 
+            Log.i(TAG, "onActivityResult: "+uri.getEncodedUserInfo());
             InputStream inputStream = getActivity().getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
 
@@ -156,15 +160,11 @@ public class AdminFragment extends Fragment {
                         );
 
                         dataViewModel.insertProductQuery(productData);
-
+                        alertWindow.toastAlert("New Product Posted",1);
                     }catch (Exception e){
                         e.printStackTrace();
                     }
-
-                    Log.i(TAG, "onClick: created product");
-
                 }
-
             }
         });
     }

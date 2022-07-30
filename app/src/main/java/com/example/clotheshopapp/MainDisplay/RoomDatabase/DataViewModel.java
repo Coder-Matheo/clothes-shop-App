@@ -1,10 +1,7 @@
 package com.example.clotheshopapp.MainDisplay.RoomDatabase;
 
-import android.app.Application;
 import android.content.Context;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
@@ -29,6 +26,9 @@ public class DataViewModel {
         return mySingletonProduct.productDao().getAllProducts();
     }
 
+    public void deleteAllProductsQuery(){
+        mySingletonProduct.productDao().deleteAllProducts();
+    }
     public void deleteProduct(int product_id){
         mySingletonProduct.productDao().deleteProductById(product_id);
     }
@@ -50,5 +50,9 @@ public class DataViewModel {
         return mySingletonUser.userDao().userFindByEmail(email);
     }
 
+
+    public void setUpdateUser(){
+        mySingletonUser.userDao().setUpdateUser();
+    }
 
 }

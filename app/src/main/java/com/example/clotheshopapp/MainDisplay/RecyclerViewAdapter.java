@@ -2,6 +2,7 @@ package com.example.clotheshopapp.MainDisplay;
 
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,8 +48,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.lstProductImg = lstProductImg;
         this.lifecycleOwner = lifecycleOwner;
         this.onClickInterfaceAdapter = onClickInterfaceAdapter1;
-
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -71,31 +70,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         RunnableCountDownTimer timer = new RunnableCountDownTimer(view.getContext());
-        int time = 0;
-
         try {
+            int time = 0;
             time = Integer.valueOf(lstProductDataOff.get(position));
             timer.countDownTimer(time, holder.timerItemTextView);
         }catch (Exception e){
             e.printStackTrace();
         }
-
         DataConverter dataConverter = new DataConverter();
-
-        DataViewModel dataViewModel = new DataViewModel(view.getContext());
-        LiveData<List<ProductData>> getPro = dataViewModel.getAllProductQuery();
-
-        getPro.observe(lifecycleOwner, new Observer<List<ProductData>>() {
-            @Override
-            public void onChanged(List<ProductData> productData) {
-                holder.productImageView.setImageBitmap(
-                        dataConverter.convertByteArray2Image(productData.get(4).getProduct_image()));
-            }
-        });
+        holder.productImageView.setImageBitmap(
+                dataConverter.convertByteArray2Image(lstProductImg.get(position)));
         holder.priceItemTextView.setText(lstProductPrice.get(position));
         holder.descriptionItemTextView.setText(lstProductName.get(position));
-        holder.productImageView.setImageResource(R.drawable.fashion1);
-
     }
 
     @Override

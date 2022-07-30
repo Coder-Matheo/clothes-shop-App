@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,14 +25,22 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
+import com.example.clotheshopapp.MainDisplay.Detail.DetailProductFragment;
+import com.example.clotheshopapp.MainDisplay.MainActivity;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataConverter;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
+import com.example.clotheshopapp.MainDisplay.SameFeature.AlertWindow;
 import com.example.clotheshopapp.R;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
+
+import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -48,12 +57,14 @@ public class LoginFragment extends Fragment {
     private DataViewModel dataViewModel;
     private static final String TAG = "LoginFragment";
     private TextWatcherHelper textWatcherHelper;
+    private AlertWindow alertWindow;
     private View view;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.log_in_fragment, container, false);
+        alertWindow = new AlertWindow(getActivity().getApplicationContext());
         emailLogInEditText = view.findViewById(R.id.emailLogInEditText);
         passwordLogInEditText = view.findViewById(R.id.passwordLogInEditText);
         logInButton = view.findViewById(R.id.logInButton);
@@ -92,22 +103,24 @@ public class LoginFragment extends Fragment {
                 get.observe(getViewLifecycleOwner(), new Observer<List<UserDataObj>>() {
                     @Override
                     public void onChanged(List<UserDataObj> userDataObjs) {
-
-                        if (userDataObjs.size() != 0){
-                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.replace(R.id.frameLayout_logging, new AdminFragment());
-                            fragmentTransaction.addToBackStack(null);
-                            fragmentTransaction.commit();
-                        }else {
-                            setAddImageSignUp();
+                        for (int i= 0; i < userDataObjs.size(); i++){
+                            if (userDataObjs.get(0).getUserName().equals("Admin")){
+                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentTransaction.replace(R.id.frameLayout_logging, new AdminFragment());
+                                fragmentTransaction.addToBackStack(null);
+                                fragmentTransaction.commit();
+                            }else if (userDataObjs.get(0).getUserName().equals("User")){
+                                startActivity(new Intent(getContext(), MainActivity.class));
+                            }else {
+                                setAddImageSignUp();
+                            }
                         }
                     }
                 });
             }
         });
     }
-
 
 
     private void setAddImageSignUp() {
@@ -171,11 +184,8 @@ public class LoginFragment extends Fragment {
 
     }
 
-
     private void setNewUsers(Bitmap bitmap) {
         DataConverter dataConverter = new DataConverter();
-        Log.i(TAG, "setNewUsers: "+adminCheckBox.getText());
-
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -192,33 +202,16 @@ public class LoginFragment extends Fragment {
                                 passwordLogInEditText.getText().toString().toUpperCase(Locale.ROOT) ,
                                 dataConverter.convertImage2ByteArray(bitmap));
                         dataViewModel.insertUserQuery(userDataObj);
-                        Log.i(TAG, "New User Created");
+
+                        alertWindow.toastAlert("User Created",1);
                     }else {
-                        Log.i(TAG, "New Users: Something wrong");
+                        alertWindow.toastAlert("Something wrong",1);
                     }
                 }catch (Exception e){
-                    Log.e(TAG, "Error or exists user");
-                }finally {
-                    LiveData<List<UserDataObj>> getPro = dataViewModel.getAllUser();
-                    getPro.observe(getViewLifecycleOwner(), new Observer<List<UserDataObj>>() {
-                        @Override
-                        public void onChanged(List<UserDataObj> userDataObjs) {
-                            for (int i = 0; i < userDataObjs.size(); i++){
-                                Log.i(TAG, "onChanged: "+ userDataObjs.get(i).getUserName());
-                                Log.i(TAG, "onChanged: "+ userDataObjs.get(i).getId());
-                            }
-
-                        }
-
-
-                    });
+                    alertWindow.toastAlert("Error or exists user", 1);
                 }
-
-
-
             }
         });
-
     }
 
 

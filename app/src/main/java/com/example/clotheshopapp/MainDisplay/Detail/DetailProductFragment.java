@@ -59,10 +59,8 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-
-        //manipulateValueUser.findUserWithNamePass("Matheo", "Matheo1370?!");
-
         LiveData<List<ProductData>> proList = dataViewModel.getAllProductQuery();
+
 
         proList.observe(getViewLifecycleOwner(), new Observer<List<ProductData>>() {
             @Override
@@ -73,6 +71,7 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
                     lstProductName.add(productData.get(i).getProductName());
                     lstProductDataOff.add(productData.get(i).getProduct_dateOff());
                     lstProductPrice.add(productData.get(i).getProductPrice());
+                    lstProductImg.add(productData.get(i).getProduct_image());
                 }
                 recyclerViewAdapter = new RecyclerViewAdapter(getViewLifecycleOwner(), lstProductName,lstProductPrice,
                         lstProductDataOff,lstProductImg, DetailProductFragment.this::onClickListenerInterface);
