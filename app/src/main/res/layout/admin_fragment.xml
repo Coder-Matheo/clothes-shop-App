@@ -99,7 +99,7 @@
                     android:id="@+id/kindlichCheckbox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/kindlich"
+                    android:text="@string/kind"
                     />
             </RadioGroup>
 

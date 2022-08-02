@@ -18,5 +18,5 @@
   <string name="releaseProduct">Release Product</string>
     <string name="maennlich">Männlich</string>
     <string name="weiblich">weiblich</string>
-  <string name="kindlich">kindlich</string>
+  <string name="kind">kind</string>
 </resources>

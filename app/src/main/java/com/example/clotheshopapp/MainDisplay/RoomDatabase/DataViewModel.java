@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import androidx.lifecycle.LiveData;
 import androidx.room.util.StringUtil;
 
+import com.example.clotheshopapp.MainDisplay.MainActivity;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonProduct;
@@ -66,12 +67,13 @@ public class DataViewModel {
 
     private Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
-    public boolean isNumeric(long strNum) {
+    private boolean isNumeric(long strNum) {
         try{
             String strNu = String.valueOf(strNum);
             if (strNu == null && strNu == "null") {
                 return false;
             }
+
             return pattern.matcher(strNu).matches();
         }catch (Exception e){
             e.printStackTrace();

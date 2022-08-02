@@ -15,8 +15,8 @@ import com.example.clotheshopapp.R;
 
 public class LoggingActivity extends AppCompatActivity {
 
-    TextView signup_text_view;
-    TextView logging_text_view;
+    private TextView admin_text_view;
+    private TextView logging_text_view;
     private static final String TAG = "LoggingActivity";
 
 
@@ -25,7 +25,7 @@ public class LoggingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loggin);
 
-        signup_text_view = findViewById(R.id.admin_text_view);
+        admin_text_view = findViewById(R.id.admin_text_view);
         logging_text_view = findViewById(R.id.logging_text_view);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -37,16 +37,17 @@ public class LoggingActivity extends AppCompatActivity {
         logging_text_view.setTextColor(getResources().getColor(R.color.combineColor));
         logging_text_view.setTypeface(null, Typeface.BOLD);
 
-        signup_text_view.setOnClickListener(new View.OnClickListener() {
+        admin_text_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new AdminFragment(), "SignUpFragment");
+                replaceFragment(new AdminFragment(), "AdminFragment");
             }
         });
 
         logging_text_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 replaceFragment(new LoginFragment(), "LoginFragment");
             }
         });
@@ -58,11 +59,11 @@ public class LoggingActivity extends AppCompatActivity {
         if (nameOfFragment.equals("LoginFragment") ){
             logging_text_view.setTextColor(getResources().getColor(R.color.combineColor));
             logging_text_view.setTypeface( null, Typeface.BOLD);
-            signup_text_view.setTextColor(Color.BLACK);
-            signup_text_view.setTypeface( null, Typeface.NORMAL);
+            admin_text_view.setTextColor(Color.BLACK);
+            admin_text_view.setTypeface( null, Typeface.NORMAL);
         }else {
-            signup_text_view.setTextColor(getResources().getColor(R.color.combineColor));
-            signup_text_view.setTypeface( null, Typeface.BOLD);
+            admin_text_view.setTextColor(getResources().getColor(R.color.combineColor));
+            admin_text_view.setTypeface( null, Typeface.BOLD);
             logging_text_view.setTextColor(Color.BLACK);
             logging_text_view.setTypeface( null, Typeface.NORMAL);
         }

@@ -2,6 +2,7 @@ package com.example.clotheshopapp.MainDisplay.login;
 
 import android.app.Application;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
@@ -12,7 +13,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 
-import com.example.clotheshopapp.MainDisplay.MainActivity;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataConverter;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
@@ -24,6 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class OnClickCheckBox extends Fragment implements View.OnClickListener {
     private static final String TAG = "OnClickCheckBox";
 
+    private Context applicationContext;
     private Application application;
     private CircleImageView productImageCircleView;
     private Bitmap bitmap;
@@ -38,6 +39,7 @@ public class OnClickCheckBox extends Fragment implements View.OnClickListener {
     private AlertWindow alertWindow;
 
     public OnClickCheckBox(AdminModel adminModel) {
+        this.applicationContext = adminModel.getApplicationContext();
         this.application = adminModel.getApplication();
         this.productImageCircleView = adminModel.getProductImageCircleView();
         this.bitmap = adminModel.getBitmap();
@@ -109,6 +111,7 @@ public class OnClickCheckBox extends Fragment implements View.OnClickListener {
 
 
     public void setReleaseButton(String isChecked) {
+
         this.releaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,16 +122,22 @@ public class OnClickCheckBox extends Fragment implements View.OnClickListener {
                         DataConverter dataConverter = new DataConverter();
                         ProductData productData = new ProductData(String.valueOf(productNameEditText.getText()),
                                 String.valueOf(productPriceEditText.getText()),String.valueOf(dateOffEditText.getText())
-                                , dataConverter.convertImage2ByteArray(bitmap)
-                        );
+                                , dataConverter.convertImage2ByteArray(bitmap),
+                                isChecked);
 
                         boolean isInserted = dataViewModel.insertProductQuery(productData);
                         if (isInserted == true){
                             alertWindow.toastAlert("New Product Posted",1);
-                            //startActivity(new Intent(, MainActivity.class));
+                            ///startActivity(new Intent(applicationContext, MainActivity.class));
+                            productImageCircleView.setImageResource(R.drawable.ic_add);
+                            productPriceEditText.setText("");
+                            productNameEditText.setText("");
+                            dateOffEditText.setText("");
+                            maennlichCheckbox.setChecked(false);
+                            weiblichCheckbox.setChecked(false);
+                            kindlichCheckbox.setChecked(false);
                         }else {
                             alertWindow.toastAlert("Error in New Product",1);
-
                         }
 
                     }catch (Exception e){
@@ -136,10 +145,6 @@ public class OnClickCheckBox extends Fragment implements View.OnClickListener {
                     }
                 }
 
-                Log.i(TAG, "onClick: " + isChecked);
-                Log.i(TAG, "onClick:  releaseButton " + maennlichCheckbox.getText());
-                Log.i(TAG, "onClick:  releaseButton " + productPriceEditText.getText());
-                Log.i(TAG, "onClick: " + bitmap);
             }
         });
     }

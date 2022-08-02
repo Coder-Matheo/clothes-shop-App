@@ -18,18 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clotheshopapp.MainDisplay.RecyclerViewAdapter;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
-import com.example.clotheshopapp.MainDisplay.RoomDatabase.ManipulateValue.ManipulateValueUser;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
-import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonProduct;
 import com.example.clotheshopapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class DetailProductFragment extends Fragment implements OnClickInterfaceAdapter{
-
-    private static final String TAG = "DetailProductFragment";
+public class FemaleProductFragment extends Fragment implements OnClickInterfaceAdapter{
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
     private ArrayList<String> lstTitle = new ArrayList<>();
@@ -39,23 +34,21 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
     private ArrayList<String> lstProductName = new ArrayList<>();
     private View view;
     private DataViewModel dataViewModel;
+    private static final String TAG = "FemaleProductFragment";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_detail_product, container, false);
+        view = inflater.inflate(R.layout.fragment_female_product, container, false);
 
         dataViewModel = new DataViewModel(getActivity().getApplication());
 
-
-        setGetDBServerValueAndSetRecyclerView(view);
-
+        setRecyclerView();
         return view;
     }
 
-    private void setGetDBServerValueAndSetRecyclerView(View view) {
-
-        recyclerView = view.findViewById(R.id.recyclerViewInTab);
+    private void setRecyclerView() {
+        recyclerView = view.findViewById(R.id.femaleFragmentRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
@@ -67,14 +60,16 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
             public void onChanged(List<ProductData> productData) {
 
                 for (int i = 0; i < productData.size(); i++){
-                    lstTitle.add(productData.get(i).getProductName());
-                    lstProductName.add(productData.get(i).getProductName());
-                    lstProductDataOff.add(productData.get(i).getProduct_dateOff());
-                    lstProductPrice.add(productData.get(i).getProductPrice());
-                    lstProductImg.add(productData.get(i).getProduct_image());
+                    if (productData.get(i).getClassified_product().equals("WEIBLICH")){
+                        lstTitle.add(productData.get(i).getProductName());
+                        lstProductName.add(productData.get(i).getProductName());
+                        lstProductDataOff.add(productData.get(i).getProduct_dateOff());
+                        lstProductPrice.add(productData.get(i).getProductPrice());
+                        lstProductImg.add(productData.get(i).getProduct_image());
+                    }
                 }
                 recyclerViewAdapter = new RecyclerViewAdapter(getViewLifecycleOwner(), lstProductName,lstProductPrice,
-                        lstProductDataOff,lstProductImg, DetailProductFragment.this::onClickListenerInterface);
+                        lstProductDataOff,lstProductImg, FemaleProductFragment.this::onClickListenerInterface);
 
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
                 recyclerView.setLayoutManager(gridLayoutManager);
@@ -83,24 +78,12 @@ public class DetailProductFragment extends Fragment implements OnClickInterfaceA
             }
         });
 
-        //Initial Retrofit
-        //RetrofitService1 retrofitService1 = new RetrofitService1();
-        //ServerApi serverApi = retrofitService1.getRetrofit().create(ServerApi.class);
 
 
-        /*serverApi.getAllProduct()
-                .enqueue(new Callback<List<ProductData>>() {
-                    @Override
-                    public void onResponse(Call<List<ProductData>> call, Response<List<ProductData>> response) {
 
-                    }
 
-                    @Override
-                    public void onFailure(Call<List<ProductData>> call, Throwable t) {
-                    }
-                });*/
+
     }
-
 
     @Override
     public void onClickListenerInterface(int position, TextView descriptionProduct, TextView priceOfProduct) {

@@ -1,6 +1,7 @@
 package com.example.clotheshopapp.MainDisplay.login;
 
 import android.app.Application;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdminModel {
+    private Context applicationContext;
     private Application application;
     private CircleImageView productImageCircleView;
     private Bitmap bitmap;
@@ -20,7 +22,9 @@ public class AdminModel {
     private EditText dateOffEditText;
     private Button releaseNewProductButton;
 
-    public AdminModel(Application application, CircleImageView productImageCircleView, Bitmap bitmap, CheckBox maennlichCheckbox, CheckBox weiblichCheckbox, CheckBox kindlichCheckbox, EditText productNameEditText, EditText productPriceEditText, EditText dateOffEditText, Button releaseNewProductButton) {
+
+    public AdminModel(Context applicationContext, Application application, CircleImageView productImageCircleView, Bitmap bitmap, CheckBox maennlichCheckbox, CheckBox weiblichCheckbox, CheckBox kindlichCheckbox, EditText productNameEditText, EditText productPriceEditText, EditText dateOffEditText, Button releaseNewProductButton) {
+        this.applicationContext = applicationContext;
         this.application = application;
         this.productImageCircleView = productImageCircleView;
         this.bitmap = bitmap;
@@ -31,6 +35,14 @@ public class AdminModel {
         this.productPriceEditText = productPriceEditText;
         this.dateOffEditText = dateOffEditText;
         this.releaseNewProductButton = releaseNewProductButton;
+    }
+
+    public Context getApplicationContext() {
+        return applicationContext;
+    }
+
+    public void setApplicationContext(Context applicationContext) {
+        this.applicationContext = applicationContext;
     }
 
     public Application getApplication() {

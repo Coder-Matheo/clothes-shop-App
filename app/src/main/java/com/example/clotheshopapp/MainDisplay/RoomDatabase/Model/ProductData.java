@@ -1,9 +1,6 @@
 package com.example.clotheshopapp.MainDisplay.RoomDatabase.Model;
 
 
-import android.content.Context;
-import android.graphics.Bitmap;
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -23,12 +20,14 @@ public class ProductData {
     private String product_dateOff;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB, name = "product_image")
     private byte[] product_image;
+    private String classified_product;
 
-    public ProductData(String productName, String productPrice, String product_dateOff, byte[] product_image) {
+    public ProductData(String productName, String productPrice, String product_dateOff, byte[] product_image, String classified_product) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.product_dateOff = product_dateOff;
         this.product_image = product_image;
+        this.classified_product = classified_product;
     }
 
     public ProductData() {
@@ -77,6 +76,14 @@ public class ProductData {
         this.product_image = product_image;
     }
 
+
+    public String getClassified_product() {
+        return classified_product;
+    }
+
+    public void setClassified_product(String classified_product) {
+        this.classified_product = classified_product;
+    }
 
     @Override
     public String toString() {

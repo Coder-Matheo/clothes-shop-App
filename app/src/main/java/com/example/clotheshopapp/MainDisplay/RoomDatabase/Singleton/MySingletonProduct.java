@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Dao.ProductDao;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
 
-@Database(entities = {ProductData.class}, version = 1)
+@Database(entities = {ProductData.class}, version = 2)
 public abstract class MySingletonProduct extends RoomDatabase {
     private static final String PRODUCT_DB = "PRODUCT_DB";
     public abstract ProductDao productDao();

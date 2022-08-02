@@ -18,9 +18,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.clotheshopapp.MainDisplay.Account.AccountFragment;
-import com.example.clotheshopapp.MainDisplay.Detail.DetailProductFragment;
+import com.example.clotheshopapp.MainDisplay.Detail.ChildProductFragment;
+import com.example.clotheshopapp.MainDisplay.Detail.FemaleProductFragment;
+import com.example.clotheshopapp.MainDisplay.Detail.MaleProductFragment;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
-import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
 import com.example.clotheshopapp.MainDisplay.login.LoggingActivity;
 import com.example.clotheshopapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -54,6 +56,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         topToolbar = findViewById(R.id.topTollBar);
+
+
+        DataViewModel dataViewModel = new DataViewModel(getApplicationContext());
+        LiveData<List<ProductData>> getPro = dataViewModel.getAllProductQuery();
+        getPro.observe(this, new Observer<List<ProductData>>() {
+            @Override
+            public void onChanged(List<ProductData> productData) {
+                for (int i = 0; i < productData.size(); i++){
+                    if (productData.get(i).getClassified_product().equals("WEIBLICH")) {
+                        Log.i(TAG, "onChanged: " + productData.get(i).getProductName());
+                    }
+                }
+
+            }
+        });
+
+
+
 
 
         setRecyclerViewHorizontal();
@@ -109,9 +129,9 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        viewPagerAdapter.addFragment(new DetailProductFragment(), "Men");
-        viewPagerAdapter.addFragment(new DetailProductFragment(), "Women");
-        viewPagerAdapter.addFragment(new DetailProductFragment(), "Children");
+        viewPagerAdapter.addFragment(new MaleProductFragment(), "Men");
+        viewPagerAdapter.addFragment(new FemaleProductFragment(), "Women");
+        viewPagerAdapter.addFragment(new ChildProductFragment(), "Child");
 
         titleTabLayout.add("Basic");
         titleTabLayout.add("Basic");

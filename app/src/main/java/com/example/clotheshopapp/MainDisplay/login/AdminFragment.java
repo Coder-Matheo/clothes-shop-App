@@ -1,6 +1,7 @@
 package com.example.clotheshopapp.MainDisplay.login;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -49,14 +50,15 @@ public class AdminFragment extends Fragment {
 
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.admin_fragment, container, false);
 
-        dataViewModel = new DataViewModel(getActivity().getApplication());
-        alertWindow = new AlertWindow(getActivity().getApplicationContext());
+        //dataViewModel = new DataViewModel(getActivity().getApplication());
+        //alertWindow = new AlertWindow(getActivity().getApplicationContext());
         setElementUI(view);
         //decided System is Admin or normal User, then can to Upload new Product
         QueryAuthorizedUser queryAuthorizedUser = new QueryAuthorizedUser(getViewLifecycleOwner(), "Admin",getContext());
@@ -140,48 +142,16 @@ public class AdminFragment extends Fragment {
 
             productImageCircleView.setImageBitmap(bitmap);
 
-            AdminModel adminModel = new AdminModel(getActivity().getApplication(),productImageCircleView, bitmap, maennlichCheckbox, weiblichCheckbox, kindlichCheckbox, productNameEditText, productPriceEditText,
+            AdminModel adminModel = new AdminModel(getContext(),getActivity().getApplication(),productImageCircleView, bitmap, maennlichCheckbox, weiblichCheckbox, kindlichCheckbox, productNameEditText, productPriceEditText,
                     dateOffEditText, releaseNewProductButton);
             maennlichCheckbox.setOnClickListener(new OnClickCheckBox(adminModel));
             weiblichCheckbox.setOnClickListener(new OnClickCheckBox(adminModel));
             kindlichCheckbox.setOnClickListener(new OnClickCheckBox(adminModel ));
 
 
-            //getUU(bitmap);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-    }
-
-    private void getUU(Bitmap bitmap) {
-
-        releaseNewProductButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!TextUtils.isEmpty(productPriceEditText.getText().toString().trim())
-                        && !TextUtils.isEmpty(productNameEditText.getText().toString().trim())
-                        && !TextUtils.isEmpty(dateOffEditText.getText().toString().trim())){
-                    try {
-                        DataConverter dataConverter = new DataConverter();
-                        ProductData productData = new ProductData(String.valueOf(productNameEditText.getText()),
-                                String.valueOf(productPriceEditText.getText()),String.valueOf(dateOffEditText.getText())
-                                , dataConverter.convertImage2ByteArray(bitmap)
-                        );
-
-                        boolean isInserted = dataViewModel.insertProductQuery(productData);
-                        if (isInserted == true){
-                            alertWindow.toastAlert("New Product Posted",1);
-                            startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
-                        }else {
-                            alertWindow.toastAlert("Error in New Product",1);
-                        }
-
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
     }
 }

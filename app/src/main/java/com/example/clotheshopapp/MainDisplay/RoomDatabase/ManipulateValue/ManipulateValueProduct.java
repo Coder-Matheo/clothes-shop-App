@@ -33,9 +33,9 @@ public class ManipulateValueProduct {
         Callable<Boolean> callable = new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
-                MySingletonProduct.getInstance(context)
+                /*MySingletonProduct.getInstance(context)
                         .productDao()
-                        .insertProduct(new ProductData(pro_name,pro_price,pro_dataOff, pro_image));
+                        .insertProduct(new ProductData(pro_name,pro_price,pro_dataOff, pro_image));*/
 
                 return true;
             }

@@ -28,11 +28,14 @@
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/activity_load_server_test.xml" value="0.21693840579710144" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/activity_loggin.xml" value="0.2" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/admin_fragment.xml" value="0.19157608695652173" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/admin_fragment.xml" value="0.1" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/background_custom_toast.xml" value="0.19610507246376813" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/fragment_account.xml" value="0.21693840579710144" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/fragment_child_product.xml" value="0.1" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/fragment_collapse_detail_product.xml" value="0.264" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/fragment_detail_product.xml" value="0.264" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/fragment_female_product.xml" value="0.1606962663975782" />
+        <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/fragment_male_product.xml" value="0.1" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/item_collapse_scroll_part.xml" value="0.17889492753623187" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/item_detail_product.xml" value="0.2" />
         <entry key="..\:/Users/alidi/AndroidStudioProjects/ClotheShopApp/app/src/main/res/layout/item_detail_product2.xml" value="0.264" />
