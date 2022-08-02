@@ -13,7 +13,7 @@ import java.util.List;
 @Dao
 public interface ProductDao {
     @Insert
-    void insertProduct(ProductData productData);
+    long insertProduct(ProductData productData);
 
     @Query("SELECT * FROM productdata")
     LiveData<List<ProductData>> getAllProducts();

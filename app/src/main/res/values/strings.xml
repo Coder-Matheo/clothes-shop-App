@@ -16,4 +16,7 @@
     <string name="productPrice">Product Price</string>
     <string name="dataOff">Data Off</string>
   <string name="releaseProduct">Release Product</string>
+    <string name="maennlich">Männlich</string>
+    <string name="weiblich">weiblich</string>
+  <string name="kindlich">kindlich</string>
 </resources>

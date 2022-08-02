@@ -1,8 +1,12 @@
 package com.example.clotheshopapp.MainDisplay.RoomDatabase;
 
 import android.content.Context;
+import android.content.Intent;
+import android.icu.text.StringPrepParseException;
+import android.text.TextUtils;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.util.StringUtil;
 
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.UserDataObj;
@@ -10,6 +14,9 @@ import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonP
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Singleton.MySingletonUser;
 
 import java.util.List;
+import java.util.regex.Pattern;
+
+import okhttp3.internal.Util;
 
 //extends AndroidViewModel
 public class DataViewModel {
@@ -33,8 +40,9 @@ public class DataViewModel {
         mySingletonProduct.productDao().deleteProductById(product_id);
     }
 
-    public void insertProductQuery(ProductData productData){
-        mySingletonProduct.productDao().insertProduct(productData);
+    public boolean insertProductQuery(ProductData productData){
+        long insertedProduct = mySingletonProduct.productDao().insertProduct(productData);
+        return isNumeric(insertedProduct);
     }
 
     //User Query
@@ -54,5 +62,23 @@ public class DataViewModel {
     public void setUpdateUser(){
         mySingletonUser.userDao().setUpdateUser();
     }
+
+
+    private Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+
+    public boolean isNumeric(long strNum) {
+        try{
+            String strNu = String.valueOf(strNum);
+            if (strNu == null && strNu == "null") {
+                return false;
+            }
+            return pattern.matcher(strNu).matches();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 
 }

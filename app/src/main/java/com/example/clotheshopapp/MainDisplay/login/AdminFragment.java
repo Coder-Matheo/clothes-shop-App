@@ -2,27 +2,24 @@ package com.example.clotheshopapp.MainDisplay.login;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.database.CursorWindow;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 
 import com.example.clotheshopapp.MainDisplay.Adminstrative.QueryAuthorizedUser;
+import com.example.clotheshopapp.MainDisplay.MainActivity;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataConverter;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
@@ -31,15 +28,12 @@ import com.example.clotheshopapp.R;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.nio.ByteBuffer;
-import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdminFragment extends Fragment {
 
-    private CircleImageView signUpImageCircleView;
+    private CircleImageView productImageCircleView;
     private View view;
     private EditText productNameEditText;
     private EditText productPriceEditText;
@@ -49,6 +43,10 @@ public class AdminFragment extends Fragment {
     private static final String TAG = "AdminFragment";
     private DataViewModel dataViewModel;
     private AlertWindow alertWindow;
+    private CheckBox maennlichCheckbox;
+    private CheckBox weiblichCheckbox;
+    private CheckBox kindlichCheckbox;
+
 
 
     @Nullable
@@ -62,18 +60,24 @@ public class AdminFragment extends Fragment {
         setElementUI(view);
         //decided System is Admin or normal User, then can to Upload new Product
         QueryAuthorizedUser queryAuthorizedUser = new QueryAuthorizedUser(getViewLifecycleOwner(), "Admin",getContext());
-        setAddImageSignUp();
+        //setAddImageSignUp();
         return view;
     }
 
     private void setElementUI(View view) {
-        signUpImageCircleView = view.findViewById(R.id.signup_image_view);
+        productImageCircleView = view.findViewById(R.id.signup_image_view);
         productNameEditText = view.findViewById(R.id.productNameEditText);
         productPriceEditText = view.findViewById(R.id.productPriceEditText);
         dateOffEditText = view.findViewById(R.id.dateOffEditText);
         releaseNewProductButton = view.findViewById(R.id.releaseNewProductButton);
         existAccountSignUpButton = view.findViewById(R.id.existAccountSignUpButton);
 
+        maennlichCheckbox = view.findViewById(R.id.maennlichCheckbox);
+        weiblichCheckbox = view.findViewById(R.id.weiblichCheckbox);
+        kindlichCheckbox = view.findViewById(R.id.kindlichCheckbox);
+
+
+        setAddImageSignUp();
         /*productNameEditText.addTextChangedListener(new GenericTextWatcher(productNameEditText, releaseNewProductButton, getViewLifecycleOwner(), getContext()));
         productPriceEditText.addTextChangedListener(new GenericTextWatcher(productPriceEditText, releaseNewProductButton, getViewLifecycleOwner(), getContext()));
         dateOffEditText.addTextChangedListener(new GenericTextWatcher(dateOffEditText, releaseNewProductButton, getViewLifecycleOwner(), getContext()));
@@ -84,7 +88,7 @@ public class AdminFragment extends Fragment {
 
     private void setAddImageSignUp() {
 
-        signUpImageCircleView.setOnClickListener(new View.OnClickListener() {
+        productImageCircleView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Ask to permission
@@ -114,7 +118,6 @@ public class AdminFragment extends Fragment {
         try {
             Uri uri = data.getData();
 
-            Log.i(TAG, "onActivityResult: "+uri.getEncodedUserInfo());
             InputStream inputStream = getActivity().getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
 
@@ -135,9 +138,16 @@ public class AdminFragment extends Fragment {
             bitmap = Bitmap.createScaledBitmap(bitmap, outWidth, outHeight,
                     false);
 
-            signUpImageCircleView.setImageBitmap(bitmap);
+            productImageCircleView.setImageBitmap(bitmap);
 
-            getUU(bitmap);
+            AdminModel adminModel = new AdminModel(getActivity().getApplication(),productImageCircleView, bitmap, maennlichCheckbox, weiblichCheckbox, kindlichCheckbox, productNameEditText, productPriceEditText,
+                    dateOffEditText, releaseNewProductButton);
+            maennlichCheckbox.setOnClickListener(new OnClickCheckBox(adminModel));
+            weiblichCheckbox.setOnClickListener(new OnClickCheckBox(adminModel));
+            kindlichCheckbox.setOnClickListener(new OnClickCheckBox(adminModel ));
+
+
+            //getUU(bitmap);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -159,8 +169,14 @@ public class AdminFragment extends Fragment {
                                 , dataConverter.convertImage2ByteArray(bitmap)
                         );
 
-                        dataViewModel.insertProductQuery(productData);
-                        alertWindow.toastAlert("New Product Posted",1);
+                        boolean isInserted = dataViewModel.insertProductQuery(productData);
+                        if (isInserted == true){
+                            alertWindow.toastAlert("New Product Posted",1);
+                            startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
+                        }else {
+                            alertWindow.toastAlert("Error in New Product",1);
+                        }
+
                     }catch (Exception e){
                         e.printStackTrace();
                     }

@@ -70,7 +70,7 @@ public class LoggingActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout_logging, fragment);
-        fragmentTransaction.addToBackStack(null);
+        //fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
