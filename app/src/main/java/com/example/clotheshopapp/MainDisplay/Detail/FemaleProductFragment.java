@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -86,7 +87,7 @@ public class FemaleProductFragment extends Fragment implements OnClickInterfaceA
     }
 
     @Override
-    public void onClickListenerInterface(int position, TextView descriptionProduct, TextView priceOfProduct) {
+    public void onClickListenerInterface(int position, TextView descriptionProduct, TextView priceOfProduct, ImageView productImageView) {
         //Transfer Data through Bundle
         Bundle mDataBundle = new Bundle();
         mDataBundle.putString("descriptionOfProductBundle", descriptionProduct.getText().toString());

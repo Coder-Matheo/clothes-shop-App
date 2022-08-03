@@ -1,9 +1,13 @@
 package com.example.clotheshopapp.MainDisplay.Detail;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,10 +20,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clotheshopapp.MainDisplay.RecyclerViewAdapter;
+import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataConverter;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.DataViewModel;
 import com.example.clotheshopapp.MainDisplay.RoomDatabase.Model.ProductData;
+import com.example.clotheshopapp.MainDisplay.login.AdminModel;
 import com.example.clotheshopapp.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,11 +109,17 @@ public class MaleProductFragment extends Fragment implements OnClickInterfaceAda
 
 
     @Override
-    public void onClickListenerInterface(int position, TextView descriptionProduct, TextView priceOfProduct) {
+    public void onClickListenerInterface(int position, TextView descriptionProduct, TextView priceOfProduct, ImageView productImageView) {
+
+        Log.i(TAG, "onClickListenerInterface: "+productImageView);
+
+
         //Transfer Data through Bundle
         Bundle mDataBundle = new Bundle();
+
         mDataBundle.putString("descriptionOfProductBundle", descriptionProduct.getText().toString());
         mDataBundle.putString("priceOfProductBundle", priceOfProduct.getText().toString());
+
 
         collapseDetailProductFragment collapseDetailProductFragment = new collapseDetailProductFragment();
         collapseDetailProductFragment.setArguments(mDataBundle);

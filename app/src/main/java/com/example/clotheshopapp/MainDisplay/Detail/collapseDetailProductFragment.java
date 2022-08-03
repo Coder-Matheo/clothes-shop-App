@@ -2,6 +2,7 @@ package com.example.clotheshopapp.MainDisplay.Detail;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ public class collapseDetailProductFragment extends Fragment {
     RecyclerCollapseAdapter recyclerCollapseAdapter;
     String descriptionOfProductValue;
     String priceOfProductValue;
+    Drawable imageDraw;
 
 
 
@@ -53,9 +55,12 @@ public class collapseDetailProductFragment extends Fragment {
         //Receive Value from the DetailProduct Fragment through Bundle
         descriptionOfProductValue = getArguments().getString("descriptionOfProductBundle");
         priceOfProductValue = getArguments().getString("priceOfProductBundle");
+        imageDraw = (Drawable) getArguments().getSerializable("image");
+
         descriptionCollapseUITextView.setText("Value Of "+ descriptionOfProductValue);
         priceCollapseUITextView.setText(priceOfProductValue);
-        Log.i("Tag In Collapse in ", descriptionOfProductValue+" : "+ priceOfProductValue);
+        Log.i("Tag In Collapse in ", descriptionOfProductValue+" : "+ priceOfProductValue+ " : "+
+                imageDraw);
     }
 
 
